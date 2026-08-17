@@ -2,8 +2,12 @@ extends Node
 
 @onready var tilemap: TileMap = $TileMap
 @onready var camera: Camera2D = $Player/Camera2D
+@onready var canvas_modulate: CanvasModulate = $CanvasModulate
 
 func _ready() -> void:
+	Daynightcycle.canvas_modulate = canvas_modulate
+	CatchMinigameUI.camera = camera
+
 	var used_rect: Rect2i = tilemap.get_used_rect()
 	var tile_size: Vector2i = tilemap.tile_set.tile_size
 

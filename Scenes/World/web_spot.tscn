@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ccns27ebcptr4"]
+
+[ext_resource type="Script" uid="uid://dgeqj101nk82v" path="res://Scripts/web_spot.gd" id="1_2oee8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_373on"]
+radius = 14.035668
+
+[node name="WebSpot" type="Node2D" unique_id=1037624317]
+script = ExtResource("1_2oee8")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=904233632]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1958780806]
+shape = SubResource("CircleShape2D_373on")

@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dejbbm831axws"]
+
+[ext_resource type="Script" uid="uid://mkcsdie37gk6" path="res://Scripts/catch_minigame.gd" id="1_ho3ik"]
+[ext_resource type="FontFile" uid="uid://bf3vie22io1gg" path="res://Minecraft.ttf" id="2_p6oet"]
+
+[node name="CatchMinigame" type="Control" unique_id=1107000838]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -40.0
+offset_right = 150.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ho3ik")
+
+[node name="BarTrack" type="Control" parent="." unique_id=1700511101]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -15.0
+offset_right = 150.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="BarTrack" unique_id=1808142298]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15, 0.15, 0.15, 1)
+
+[node name="Zone" type="ColorRect" parent="BarTrack" unique_id=1075953913]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 180.0
+offset_bottom = 30.0
+color = Color(0.435, 0.812, 0.592, 1)
+
+[node name="Needle" type="ColorRect" parent="BarTrack" unique_id=880431955]
+layout_mode = 0
+offset_right = 3.0
+offset_bottom = 30.0
+
+[node name="ResultLabel" type="Label" parent="." unique_id=883199947]
+layout_mode = 0
+offset_left = 91.0
+offset_top = -29.0
+offset_right = 131.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource("2_p6oet")
+theme_override_font_sizes/font_size = 32

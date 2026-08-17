@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cho6g003ge8iy"]
+
+[ext_resource type="Script" uid="uid://cp83ihg6i3xnu" path="res://Scripts/catch_minigame_ui.gd" id="1_p051q"]
+[ext_resource type="PackedScene" uid="uid://dejbbm831axws" path="res://Scenes/World/CatchMinigame.tscn" id="2_8ja6n"]
+
+[node name="CatchMinigameUI" type="CanvasLayer" unique_id=1888968753]
+script = ExtResource("1_p051q")
+
+[node name="CatchMinigame" parent="." unique_id=1107000838 instance=ExtResource("2_8ja6n")]

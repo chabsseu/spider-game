@@ -1,11 +1,28 @@
 extends Camera2D
 
-func _ready() -> void:
-	var tilemap: TileMap = get_node("/root/World/TileMap") # adjust path to match your scene tree
-	var used_rect: Rect2i = tilemap.get_used_rect()
-	var tile_size: Vector2i = tilemap.tile_set.tile_size
+## Add this to your existing camera_2d.gd (or merge with whatever's
+## already there, like the camera-limit code from earlier).
 
-	limit_left = used_rect.position.x * tile_size.x
-	limit_top = used_rect.position.y * tile_size.y
-	limit_right = used_rect.end.x * tile_size.x
-	limit_bottom = used_rect.end.y * tile_size.y
+var _shake_strength: float = 0.0
+var _shake_duration: float = 0.0
+var _rng := RandomNumberGenerator.new()
+
+func _ready() -> void:
+	_rng.randomize()
+	# ...your existing camera-limit setup code stays here too
+
+func _process(delta: float) -> void:
+	if _shake_duration > 0.0:
+		_shake_duration -= delta
+		offset = Vector2(
+			_rng.randf_range(-_shake_strength, _shake_strength),
+			_rng.randf_range(-_shake_strength, _shake_strength)
+		)
+		if _shake_duration <= 0.0:
+			offset = Vector2.ZERO
+
+## Call this from anywhere with a reference to the camera, e.g.
+## camera.shake(4.0, 0.2) for a small quick shake.
+func shake(strength: float = 4.0, duration: float = 0.2) -> void:
+	_shake_strength = strength
+	_shake_duration = duration

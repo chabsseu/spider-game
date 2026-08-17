@@ -15,6 +15,20 @@ run/main_scene="uid://crhg8rkm2bnw3"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Daynightcycle="*uid://dvnt7ayy1l258"
+CatchMinigameUI="*uid://cho6g003ge8iy"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
+[global_group]
+
+player=""
+
 [input]
 
 A={
