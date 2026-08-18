@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://c7lreop8xd413"]
+
+[ext_resource type="Script" uid="uid://b4xbeexw3pksh" path="res://Scripts/ContainerUI.gd" id="1_cftu4"]
+
+[node name="ContainerUI" type="CanvasLayer" unique_id=1375906538]
+script = ExtResource("1_cftu4")
+
+[node name="Panel" type="Control" parent="." unique_id=210042373]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -160.0
+offset_right = 260.0
+offset_bottom = -20.0
+grow_vertical = 0
+
+[node name="Background" type="ColorRect" parent="Panel" unique_id=480475354]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 90.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="Header" type="Label" parent="Panel" unique_id=1917895631]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 230.0
+offset_bottom = 28.0
+text = "Container (0/3)"
+
+[node name="List" type="VBoxContainer" parent="Panel" unique_id=595411904]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 34.0
+offset_right = 230.0
+offset_bottom = 130.0

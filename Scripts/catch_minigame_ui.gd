@@ -51,8 +51,14 @@ func _on_catch_succeeded() -> void:
 
 	catch_completed.emit(true, _current_web_spot)
 
-	# TODO: once SpiderContainer exists, add the caught spider to it here.
 	if is_instance_valid(_current_web_spot):
+		var caught_species: SpiderSpecies = _current_web_spot.species
+		if caught_species:
+			var added := SpiderContainer.add_spider(caught_species)
+			if added:
+				print("Caught a ", caught_species.species_name, "! Added to container.")
+			else:
+				print("Caught a ", caught_species.species_name, ", but the container is full!")
 		_current_web_spot.queue_free()
 	_current_web_spot = null
 

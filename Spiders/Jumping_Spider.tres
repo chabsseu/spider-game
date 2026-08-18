@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SpiderSpecies" format=3 uid="uid://bodd70sxmxlr8"]
+
+[ext_resource type="Script" uid="uid://w5fyoqsnpr1g" path="res://Spiders/SpiderSpecies.gd" id="1_girli"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_girli"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[resource]
+script = ExtResource("1_girli")
+species_name = "Jumping Spider"
+icon = SubResource("CompressedTexture2D_girli")
+metadata/_custom_type_script = "uid://w5fyoqsnpr1g"

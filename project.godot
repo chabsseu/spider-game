@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Daynightcycle="*uid://dvnt7ayy1l258"
 CatchMinigameUI="*uid://cho6g003ge8iy"
+SpiderContainer="*uid://ccl33ksac75et"
 
 [display]
 

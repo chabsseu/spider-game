@@ -9,7 +9,7 @@ class_name WebSpot
 signal player_entered_range
 signal player_exited_range
 
-@export var difficulty: float = 0.3 ## 0.0 (easy/common) - 1.0 (hard/rare). Feed this into CatchMinigame.start_attempt().
+@export var species: SpiderSpecies
 @export var interact_action: String = "ui_accept" ## button the player presses to start the catch attempt
 
 @onready var detection_area: Area2D = $DetectionArea
@@ -23,6 +23,8 @@ func _ready() -> void:
 	queue_redraw()
 
 func _draw() -> void:
+	# Bright placeholder so it's easy to spot while prototyping.
+	# Swap this out for real art later.
 	draw_circle(Vector2.ZERO, 6.0, Color(1.0, 1.0, 1.0, 1.0))
 	draw_arc(Vector2.ZERO, 10.0, 0, TAU, 16, Color(1.0, 1.0, 1.0, 0.8), 2.0)
 
@@ -44,10 +46,12 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _start_catch() -> void:
 	# Hand off to whatever global reference holds your CatchMinigame UI.
-	# Adjust this path to match where you instance it (e.g. an autoload
-	# or a node under your World's CanvasLayer).
 	if not CatchMinigameUI:
 		push_warning("No CatchMinigameUI autoload found — wire this up once your catch UI is set up.")
 		return
 
-	CatchMinigameUI.begin_catch(self, difficulty)
+	if not species:
+		push_warning("This WebSpot has no species assigned.")
+		return
+
+	CatchMinigameUI.begin_catch(self, species.difficulty)

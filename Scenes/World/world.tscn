@@ -10,6 +10,10 @@
 [ext_resource type="FontFile" uid="uid://bf3vie22io1gg" path="res://Minecraft.ttf" id="7_fcotr"]
 [ext_resource type="Script" uid="uid://delictga36fxt" path="res://Scripts/web_spot_manager.gd" id="9_y0d6x"]
 [ext_resource type="PackedScene" uid="uid://ccns27ebcptr4" path="res://Scenes/World/web_spot.tscn" id="10_ugf0j"]
+[ext_resource type="Script" uid="uid://w5fyoqsnpr1g" path="res://Spiders/SpiderSpecies.gd" id="11_pvt60"]
+[ext_resource type="Resource" uid="uid://bodd70sxmxlr8" path="res://Spiders/Jumping_Spider.tres" id="12_vbhkl"]
+[ext_resource type="Resource" uid="uid://bg8v56clvxfsb" path="res://Spiders/orb_weaver_spider.tres" id="13_dbvd7"]
+[ext_resource type="PackedScene" uid="uid://c7lreop8xd413" path="res://Scenes/World/ContainerUI.tscn" id="13_vbhkl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vadfg"]
 texture = ExtResource("2_3rhlx")
@@ -1207,3 +1211,6 @@ script = ExtResource("7_7staa")
 [node name="WebSpotManager" type="Node2D" parent="." unique_id=691535314]
 script = ExtResource("9_y0d6x")
 web_spot_scene = ExtResource("10_ugf0j")
+species_pool = Array[ExtResource("11_pvt60")]([ExtResource("12_vbhkl"), ExtResource("13_dbvd7")])
+
+[node name="ContainerUI" parent="." unique_id=1375906538 instance=ExtResource("13_vbhkl")]

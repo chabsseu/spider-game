@@ -6,13 +6,14 @@ class_name WebSpotManager
 ## child of your World scene, set spawn_area to cover your grass/
 ## huntable region, and assign web_spot_scene to WebSpot.tscn.
 ##
-## Requires the DayNightCycle autoload (from earlier) to be set up
+## Requires the Daynightcycle autoload (from earlier) to be set up
 ## and firing night_started / day_started signals.
 
 @export var web_spot_scene: PackedScene
 @export var spawn_area: Rect2 = Rect2(-400, -300, 800, 600) ## world-space rect to spawn within
 @export var min_spawns: int = 2
 @export var max_spawns: int = 5
+@export var species_pool: Array[SpiderSpecies] = [] ## drag your SpiderSpecies .tres files in here
 
 var _active_spots: Array[WebSpot] = []
 
@@ -29,7 +30,6 @@ func _on_night_started() -> void:
 	var count := randi_range(min_spawns, max_spawns)
 	for i in count:
 		_spawn_one()
-		
 
 func _on_day_started() -> void:
 	_clear_spots()
@@ -39,13 +39,16 @@ func _spawn_one() -> void:
 		push_warning("WebSpotManager has no web_spot_scene assigned.")
 		return
 
+	if species_pool.is_empty():
+		push_warning("WebSpotManager has no species in its species_pool.")
+		return
+
 	var spot: WebSpot = web_spot_scene.instantiate()
 	spot.position = Vector2(
 		randf_range(spawn_area.position.x, spawn_area.position.x + spawn_area.size.x),
 		randf_range(spawn_area.position.y, spawn_area.position.y + spawn_area.size.y)
 	)
-	# TODO: once you have real spider species, randomize spot.difficulty
-	# here based on rarity weights instead of the exported default.
+	spot.species = species_pool[randi() % species_pool.size()]
 	print("Spawned web spot at: ", spot.position)
 	add_child(spot)
 	_active_spots.append(spot)
