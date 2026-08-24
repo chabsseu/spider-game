@@ -6,6 +6,8 @@
 [resource]
 script = ExtResource("1_emm4n")
 species_name = "orb-weaver spider"
-difficulty = 0.5
+difficulty = 1.0
+sell_price = 15
+buy_price = 25
 icon = ExtResource("1_8nxrm")
 metadata/_custom_type_script = "uid://w5fyoqsnpr1g"

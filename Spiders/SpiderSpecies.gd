@@ -10,6 +10,8 @@ class_name SpiderSpecies
 
 @export var species_name: String = "Unknown Spider"
 @export var difficulty: float = 0.3 ## 0.0 (common/easy) - 1.0 (rare/hard). Feeds the catch minigame.
+@export var sell_price: int = 10 ## how much selling one of these to the trader earns
+@export var buy_price: int = 20 ## how much buying one of these from the trader costs
 @export var description: String = ""
 
 ## Optional: once you have real art, assign a texture here and swap

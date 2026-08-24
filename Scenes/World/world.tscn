@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://bodd70sxmxlr8" path="res://Spiders/Jumping_Spider.tres" id="12_vbhkl"]
 [ext_resource type="Resource" uid="uid://bg8v56clvxfsb" path="res://Spiders/orb_weaver_spider.tres" id="13_dbvd7"]
 [ext_resource type="PackedScene" uid="uid://c7lreop8xd413" path="res://Scenes/World/ContainerUI.tscn" id="13_vbhkl"]
+[ext_resource type="PackedScene" uid="uid://bxh8umic28wmh" path="res://Scenes/NPC/tradernpc.tscn" id="15_4pv6w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vadfg"]
 texture = ExtResource("2_3rhlx")
@@ -1214,3 +1215,6 @@ web_spot_scene = ExtResource("10_ugf0j")
 species_pool = Array[ExtResource("11_pvt60")]([ExtResource("12_vbhkl"), ExtResource("13_dbvd7")])
 
 [node name="ContainerUI" parent="." unique_id=1375906538 instance=ExtResource("13_vbhkl")]
+
+[node name="Tradernpc" parent="." unique_id=2015198102 instance=ExtResource("15_4pv6w")]
+position = Vector2(70, -22)

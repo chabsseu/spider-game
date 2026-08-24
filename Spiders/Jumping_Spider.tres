@@ -8,5 +8,6 @@ load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.cte
 [resource]
 script = ExtResource("1_girli")
 species_name = "Jumping Spider"
+buy_price = 10
 icon = SubResource("CompressedTexture2D_girli")
 metadata/_custom_type_script = "uid://w5fyoqsnpr1g"
