@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpiderSpecies" format=3 uid="uid://2gs8hqeorbl5"]
+
+[ext_resource type="Script" uid="uid://w5fyoqsnpr1g" path="res://Spiders/SpiderSpecies.gd" id="1_nbpy6"]
+[ext_resource type="Texture2D" uid="uid://5l82pf5ev6km" path="res://icon.svg" id="1_tv7ac"]
+
+[resource]
+script = ExtResource("1_nbpy6")
+species_name = "Chili Spider"
+difficulty = 1.5
+sell_price = 15
+buy_price = 35
+description = "GAGAMBANG SILI"
+health = 100.0
+speed = 15.0
+strength = 10.0
+shield = 10.0
+crit_chance = 30.0
+icon = ExtResource("1_tv7ac")
+metadata/_custom_type_script = "uid://w5fyoqsnpr1g"
