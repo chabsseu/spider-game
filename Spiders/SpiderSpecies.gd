@@ -14,6 +14,12 @@ class_name SpiderSpecies
 @export var buy_price: int = 20 ## how much buying one of these from the trader costs
 @export var description: String = ""
 
-## Optional: once you have real art, assign a texture here and swap
-## WebSpot's placeholder _draw() for a Sprite2D using this.
+#Stats
+@export var health: float
+@export var speed: float
+@export var strength: float
+@export var shield: float
+@export var crit_chance: float
+
+
 @export var icon: Texture2D

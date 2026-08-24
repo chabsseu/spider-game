@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://31no8lp61qwa"]
+
+[ext_resource type="Texture2D" uid="uid://cou0gmx13adab" path="res://Assets/Townspeople/Townspeople.png" id="1_ylao8"]
+
+[sub_resource type="GDScript" id="GDScript_ylao8"]
+script/source = "extends CharacterBody2D
+class_name EnemyNPC
+
+## Stationary NPC. Walk up, interact, and pick one of your caught
+## spiders to fight this NPC's spider. Win the bet, get bet_reward;
+## lose, get nothing (no permadeath / loss penalty yet — can add
+## higher stakes later once this feels good).
+
+@export var opponent_species: SpiderSpecies
+@export var bet_reward: int = 30
+@export var interact_action: String = \"ui_accept\"
+
+@onready var detection_area: Area2D = $DetectionArea
+
+var player_in_range: bool = false
+
+func _ready() -> void:
+	detection_area.body_entered.connect(_on_body_entered)
+	detection_area.body_exited.connect(_on_body_exited)
+
+func _process(_delta: float) -> void:
+	if player_in_range and Input.is_action_just_pressed(interact_action):
+		_try_start_challenge()
+
+func _try_start_challenge() -> void:
+	if SpiderContainer.get_count() == 0:
+		print(\"You have no spiders to fight with!\")
+		return
+
+	if not opponent_species:
+		push_warning(\"ChallengerNPC has no opponent_species assigned.\")
+		return
+
+	BattleSelectUi.open(opponent_species, bet_reward)
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group(\"player\"):
+		player_in_range = true
+
+func _on_body_exited(body: Node2D) -> void:
+	if body.is_in_group(\"player\"):
+		player_in_range = false
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqfyx"]
+atlas = ExtResource("1_ylao8")
+region = Rect2(270, 208, 18, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0hp1c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqfyx")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oxbw1"]
+radius = 6.0
+height = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ylao8"]
+radius = 13.0
+
+[node name="EnemyNPC" type="CharacterBody2D" unique_id=243201095]
+script = SubResource("GDScript_ylao8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=68794018]
+sprite_frames = SubResource("SpriteFrames_0hp1c")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=581454276]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_oxbw1")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=417504604]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1518837676]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_ylao8")

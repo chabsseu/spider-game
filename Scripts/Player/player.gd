@@ -6,6 +6,11 @@ extends CharacterBody2D
 
 var facing_direction: Vector2 = Vector2.DOWN
 
+func _ready() -> void:
+	# Restores position if returning from a battle transition
+	if BattleContext.has_method("consume_return_position"):
+		BattleContext.consume_return_position(self)
+		
 func _physics_process(delta: float) -> void:
 	var input_direction = get_4_directional_input()
 	velocity = input_direction * speed

@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://battlescene01"]
+
+[ext_resource type="Script" uid="uid://vh0qitgxgqwl" path="res://Scripts/battle_scene.gd" id="1_yp5s7"]
+[ext_resource type="Script" uid="uid://stkyx2koy5ry" path="res://Scripts/Global/Battlecontroller.gd" id="2_battlecontroller"]
+[ext_resource type="FontFile" uid="uid://bf3vie22io1gg" path="res://Minecraft.ttf" id="3_irlcp"]
+
+[node name="BattleScene" type="Node2D" unique_id=1366273617]
+script = ExtResource("1_yp5s7")
+
+[node name="BattleController" type="Node" parent="." unique_id=512918563]
+script = ExtResource("2_battlecontroller")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1292310332]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.31, 0.42, 0.27, 1)
+
+[node name="OpponentArea" type="Control" parent="." unique_id=494913999]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 760.0
+offset_top = 80.0
+offset_right = 1180.0
+offset_bottom = 280.0
+
+[node name="Placeholder" type="ColorRect" parent="OpponentArea" unique_id=993188725]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 60.0
+offset_right = 220.0
+offset_bottom = 160.0
+color = Color(0.15, 0.12, 0.1, 1)
+
+[node name="Sprite" type="TextureRect" parent="OpponentArea" unique_id=1064820518]
+visible = false
+layout_mode = 0
+offset_left = 100.0
+offset_top = 40.0
+offset_right = 260.0
+offset_bottom = 200.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="OpponentArea" unique_id=299066629]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -19.0
+offset_right = 237.0
+offset_bottom = 5.0
+text = "Opponent Spider"
+
+[node name="HealthBar" type="ProgressBar" parent="OpponentArea" unique_id=1908318042]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 7.0
+offset_right = 237.0
+offset_bottom = 21.0
+value = 100.0
+show_percentage = false
+
+[node name="ShieldBar" type="ProgressBar" parent="OpponentArea" unique_id=655440414]
+modulate = Color(0.62, 0.85, 0.98, 1)
+layout_mode = 0
+offset_left = -3.0
+offset_top = 23.0
+offset_right = 237.0
+offset_bottom = 31.0
+show_percentage = false
+
+[node name="PlayerArea" type="Control" parent="." unique_id=965120520]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 140.0
+offset_top = 420.0
+offset_right = 560.0
+offset_bottom = 620.0
+
+[node name="Placeholder" type="ColorRect" parent="PlayerArea" unique_id=134896633]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 40.0
+offset_right = 200.0
+offset_bottom = 140.0
+color = Color(0.15, 0.12, 0.1, 1)
+
+[node name="Sprite" type="TextureRect" parent="PlayerArea" unique_id=298612948]
+visible = false
+layout_mode = 0
+offset_left = 80.0
+offset_top = 20.0
+offset_right = 240.0
+offset_bottom = 180.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="PlayerArea" unique_id=510586416]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -42.0
+offset_right = 232.0
+offset_bottom = -18.0
+text = "Player Spider"
+
+[node name="HealthBar" type="ProgressBar" parent="PlayerArea" unique_id=953026310]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -16.0
+offset_right = 232.0
+offset_bottom = -2.0
+value = 100.0
+show_percentage = false
+
+[node name="ShieldBar" type="ProgressBar" parent="PlayerArea" unique_id=160167868]
+modulate = Color(0.62, 0.85, 0.98, 1)
+layout_mode = 0
+offset_left = -8.0
+offset_right = 232.0
+offset_bottom = 8.0
+show_percentage = false
+
+[node name="ResultLabel" type="Label" parent="." unique_id=252280449]
+offset_left = 340.0
+offset_top = 320.0
+offset_right = 940.0
+offset_bottom = 360.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="." unique_id=1118192765]
+offset_left = 570.0
+offset_top = 640.0
+offset_right = 710.0
+offset_bottom = 674.0
+text = "Continue"
+
+[node name="BroadcastLabel" type="Label" parent="." unique_id=529016425]
+offset_left = 688.0
+offset_top = 493.0
+offset_right = 1272.0
+offset_bottom = 709.0
+theme_override_fonts/font = ExtResource("3_irlcp")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 2

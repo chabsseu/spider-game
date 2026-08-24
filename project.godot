@@ -22,6 +22,9 @@ CatchMinigameUI="*uid://cho6g003ge8iy"
 SpiderContainer="*uid://ccl33ksac75et"
 TraderShopUi="*uid://c8ggof63bn7gj"
 Economy="*uid://dvg8fdvwo3y38"
+BattleSelectUi="*uid://cd6rbn5ncl4j8"
+BattleContext="*uid://boaumhx8k8kxk"
+Battlecontroller="*uid://stkyx2koy5ry"
 
 [display]
 

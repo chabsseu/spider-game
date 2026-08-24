@@ -15,6 +15,7 @@
 [ext_resource type="Resource" uid="uid://bg8v56clvxfsb" path="res://Spiders/orb_weaver_spider.tres" id="13_dbvd7"]
 [ext_resource type="PackedScene" uid="uid://c7lreop8xd413" path="res://Scenes/World/ContainerUI.tscn" id="13_vbhkl"]
 [ext_resource type="PackedScene" uid="uid://bxh8umic28wmh" path="res://Scenes/NPC/tradernpc.tscn" id="15_4pv6w"]
+[ext_resource type="PackedScene" uid="uid://31no8lp61qwa" path="res://Scenes/NPC/enemy_npc.tscn" id="16_dr8i3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vadfg"]
 texture = ExtResource("2_3rhlx")
@@ -1218,3 +1219,8 @@ species_pool = Array[ExtResource("11_pvt60")]([ExtResource("12_vbhkl"), ExtResou
 
 [node name="Tradernpc" parent="." unique_id=2015198102 instance=ExtResource("15_4pv6w")]
 position = Vector2(70, -22)
+
+[node name="EnemyNPC" parent="." unique_id=243201095 instance=ExtResource("16_dr8i3")]
+z_index = 1
+position = Vector2(320, -128)
+opponent_species = ExtResource("12_vbhkl")

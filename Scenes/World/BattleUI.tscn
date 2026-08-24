@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://cmbt36llv0ybb"]
+
+[ext_resource type="Script" uid="uid://dxjubg8txyytx" path="res://Scripts/battle_ui.gd" id="1_a8v1t"]
+[ext_resource type="Script" uid="uid://stkyx2koy5ry" path="res://Scripts/Global/Battlecontroller.gd" id="2_battlecontroller"]
+
+[node name="BattleUI" type="CanvasLayer" unique_id=305554908]
+script = ExtResource("1_a8v1t")
+
+[node name="BattleController" type="Node" parent="." unique_id=1100343685]
+script = ExtResource("2_battlecontroller")
+
+[node name="Panel" type="Control" parent="." unique_id=2038265941]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -140.0
+offset_right = 220.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Panel" unique_id=197492397]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.85)
+
+[node name="PlayerName" type="Label" parent="Panel" unique_id=29900815]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 200.0
+offset_bottom = 32.0
+text = "Player Spider"
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="Panel" unique_id=14777011]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 36.0
+offset_right = 200.0
+offset_bottom = 52.0
+value = 100.0
+show_percentage = false
+
+[node name="PlayerShieldBar" type="ProgressBar" parent="Panel" unique_id=1091439555]
+modulate = Color(0.62, 0.85, 0.98, 1)
+layout_mode = 0
+offset_left = 16.0
+offset_top = 56.0
+offset_right = 200.0
+offset_bottom = 66.0
+show_percentage = false
+
+[node name="OpponentName" type="Label" parent="Panel" unique_id=819203872]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 12.0
+offset_right = 424.0
+offset_bottom = 32.0
+text = "Opponent Spider"
+horizontal_alignment = 2
+
+[node name="OpponentHealthBar" type="ProgressBar" parent="Panel" unique_id=1853164209]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 36.0
+offset_right = 424.0
+offset_bottom = 52.0
+value = 100.0
+show_percentage = false
+
+[node name="OpponentShieldBar" type="ProgressBar" parent="Panel" unique_id=1379686318]
+modulate = Color(0.62, 0.85, 0.98, 1)
+layout_mode = 0
+offset_left = 240.0
+offset_top = 56.0
+offset_right = 424.0
+offset_bottom = 66.0
+show_percentage = false
+
+[node name="ResultLabel" type="Label" parent="Panel" unique_id=429778781]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 110.0
+offset_right = 424.0
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="Panel" unique_id=1067891937]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 240.0
+offset_right = 260.0
+offset_bottom = 268.0
+text = "Close"
