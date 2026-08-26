@@ -1,12 +1,10 @@
 extends CanvasLayer
 
-## Autoload singleton (name it "NamingUI"). Pokemon-style "Give a
-## nickname?" popup shown right after catching a spider. Call
-## NamingUI.prompt(caught_spider) to show it for that spider.
-##
-## Pauses the whole game tree while open, so the player can't move
-## while typing — process_mode ALWAYS keeps this UI itself running
-## even while paused.
+## Autoload singleton (name it "NamingUi"). Pokemon-style "Give a
+## nickname?" popup shown right after catching or buying a spider. Call
+## NamingUi.prompt(caught_spider) to show it for that spider.
+
+signal closed
 
 @onready var panel: Control = $Panel
 @onready var message_label: Label = $Panel/MessageLabel
@@ -23,10 +21,10 @@ func _ready() -> void:
 	skip_button.pressed.connect(_on_skip)
 	name_input.text_submitted.connect(func(_text): _on_confirm())
 
-func prompt(caught_spider: CaughtSpider) -> void:
+func prompt(caught_spider: CaughtSpider, action_verb: String = "caught") -> void:
 	_target_spider = caught_spider
 	var species_name := caught_spider.species.species_name if caught_spider.species else "spider"
-	message_label.text = "You caught a %s! Give it a nickname?" % species_name
+	message_label.text = "You %s a %s! Give it a nickname?" % [action_verb, species_name]
 	name_input.text = ""
 	panel.show()
 	get_tree().paused = true
@@ -44,3 +42,4 @@ func _on_skip() -> void:
 func _close() -> void:
 	panel.hide()
 	get_tree().paused = false
+	closed.emit()

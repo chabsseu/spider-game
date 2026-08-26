@@ -2,15 +2,16 @@ extends RefCounted
 class_name CaughtSpider
 
 ## Represents one individual caught spider (not just its species type).
-## Kept minimal for now — species identity + catch time. Extend later
-## with a nickname, condition/feeding stats, etc. once those systems exist.
 
 var species: SpiderSpecies
 var caught_time: String # e.g. "19:42", from DayNightCycle.get_time_string()
 var nickname: String = ""
-func _init(p_species: SpiderSpecies, p_caught_time: String = "") -> void:
+
+# Update _init to accept 3 parameters (with default empty values for flexibility)
+func _init(p_species: SpiderSpecies = null, p_caught_time: String = "", p_nickname: String = "") -> void:
 	species = p_species
 	caught_time = p_caught_time
+	nickname = p_nickname
 
 func get_display_name() -> String:
 	if nickname != "":

@@ -1,9 +1,7 @@
 extends CanvasLayer
 
-## Autoload singleton (Project Settings -> Autoload, name it exactly
-## "TraderShopUI") pointing at TraderShopUI.tscn. Opened by TraderNPC
-## when the player interacts with it. Shows two sections: spiders for
-## sale (buy) and the player's own caught spiders (sell).
+## Autoload singleton (Project Settings -> Autoload, name it "TraderShopUI")
+## Opened by TraderNPC when the player interacts with it.
 
 @onready var panel: Control = $Panel
 @onready var money_label: Label = $Panel/MoneyLabel
@@ -51,7 +49,7 @@ func _refresh() -> void:
 		var buy_button := Button.new()
 		buy_button.text = "Buy"
 		buy_button.disabled = Economy.money < species.buy_price or SpiderContainer.is_full()
-		buy_button.pressed.connect(func(): SpiderContainer.buy_spider(species))
+		buy_button.pressed.connect(func(): _buy_and_name_spider(species))
 		row.add_child(buy_button)
 
 		for_sale_list.add_child(row)
@@ -61,12 +59,10 @@ func _refresh() -> void:
 		var row := HBoxContainer.new()
 
 		var label := Label.new()
-		
-		# Get custom nickname or species name fallback
 		var display_name := spider.get_display_name()
 		
-		# Optional: Add species info in parentheses if a custom nickname exists
-		if not spider.nickname.is_empty() and spider.species:
+		# Show base species in parentheses if a custom nickname exists
+		if spider.nickname != "" and spider.species:
 			display_name += " (%s)" % spider.species.species_name
 
 		var price := spider.species.sell_price if spider.species else 0
@@ -86,3 +82,12 @@ func _refresh() -> void:
 		empty_label.text = "(you have no spiders)"
 		empty_label.modulate = Color(0.7, 0.7, 0.7)
 		your_spiders_list.add_child(empty_label)
+
+func _buy_and_name_spider(species: SpiderSpecies) -> void:
+	if SpiderContainer.buy_spider(species):
+		var new_spider: CaughtSpider = SpiderContainer.get_spiders().back()
+		if new_spider and NamingUi:
+			panel.hide()
+			NamingUi.prompt(new_spider, "bought")
+			await NamingUi.closed
+			panel.show()

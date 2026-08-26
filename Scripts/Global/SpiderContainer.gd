@@ -15,14 +15,14 @@ signal container_changed # fires on any add/remove — UI should listen to this 
 var _spiders: Array[CaughtSpider] = []
 
 ## Returns the newly created CaughtSpider on success, or null if the
-## container is full. Callers can use the returned spider directly
-## (e.g. NamingUI.prompt(new_spider)) instead of looking it up again.
-func add_spider(species: SpiderSpecies) -> CaughtSpider:
+## container is full. Accepts an optional custom nickname.
+func add_spider(species: SpiderSpecies, nickname: String = "") -> CaughtSpider:
 	if is_full():
 		container_full.emit()
 		return null
 
-	var spider := CaughtSpider.new(species, Daynightcycle.get_time_string() if Daynightcycle else "")
+	var current_time := Daynightcycle.get_time_string() if Daynightcycle else ""
+	var spider := CaughtSpider.new(species, current_time, nickname)
 	_spiders.append(spider)
 	spider_added.emit(spider)
 	container_changed.emit()
@@ -44,7 +44,7 @@ func sell_spider(spider: CaughtSpider) -> void:
 
 ## Buys a spider of the given species from the trader. Returns false
 ## if the player can't afford it or the container is full.
-func buy_spider(species: SpiderSpecies) -> bool:
+func buy_spider(species: SpiderSpecies, nickname: String = "") -> bool:
 	if is_full():
 		container_full.emit()
 		return false
@@ -52,7 +52,7 @@ func buy_spider(species: SpiderSpecies) -> bool:
 	if not Economy.spend_money(species.buy_price):
 		return false
 
-	return add_spider(species) != null
+	return add_spider(species, nickname) != null
 
 func is_full() -> bool:
 	return _spiders.size() >= capacity
