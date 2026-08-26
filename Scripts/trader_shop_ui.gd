@@ -61,9 +61,16 @@ func _refresh() -> void:
 		var row := HBoxContainer.new()
 
 		var label := Label.new()
-		var name_text := spider.species.species_name if spider.species else "Unknown Spider"
+		
+		# Get custom nickname or species name fallback
+		var display_name := spider.get_display_name()
+		
+		# Optional: Add species info in parentheses if a custom nickname exists
+		if not spider.nickname.is_empty() and spider.species:
+			display_name += " (%s)" % spider.species.species_name
+
 		var price := spider.species.sell_price if spider.species else 0
-		label.text = "%s (caught %s)" % [name_text, spider.caught_time]
+		label.text = "%s (caught %s)" % [display_name, spider.caught_time]
 		label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		row.add_child(label)
 

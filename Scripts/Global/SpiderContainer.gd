@@ -14,16 +14,19 @@ signal container_changed # fires on any add/remove — UI should listen to this 
 
 var _spiders: Array[CaughtSpider] = []
 
-func add_spider(species: SpiderSpecies) -> bool:
+## Returns the newly created CaughtSpider on success, or null if the
+## container is full. Callers can use the returned spider directly
+## (e.g. NamingUI.prompt(new_spider)) instead of looking it up again.
+func add_spider(species: SpiderSpecies) -> CaughtSpider:
 	if is_full():
 		container_full.emit()
-		return false
+		return null
 
 	var spider := CaughtSpider.new(species, Daynightcycle.get_time_string() if Daynightcycle else "")
 	_spiders.append(spider)
 	spider_added.emit(spider)
 	container_changed.emit()
-	return true
+	return spider
 
 func remove_spider(spider: CaughtSpider) -> void:
 	_spiders.erase(spider)
@@ -49,7 +52,7 @@ func buy_spider(species: SpiderSpecies) -> bool:
 	if not Economy.spend_money(species.buy_price):
 		return false
 
-	return add_spider(species)
+	return add_spider(species) != null
 
 func is_full() -> bool:
 	return _spiders.size() >= capacity

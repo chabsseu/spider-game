@@ -47,9 +47,12 @@ func _ready() -> void:
 
 	var player_spider := Spider.from_species(caught_spider.species)
 	var opponent_spider := Spider.from_species(opponent_species)
+
+	# Override the spider object's name with the custom display name
+	player_spider.spider_name = caught_spider.get_display_name()
 	_player_spider_name = player_spider.spider_name
 
-	player_name_label.text = player_spider.spider_name
+	player_name_label.text = _player_spider_name
 	opponent_name_label.text = opponent_spider.spider_name
 
 	_set_display_sprite(player_sprite, player_placeholder, caught_spider.species.icon)

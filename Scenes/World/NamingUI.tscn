@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://jgarhtpqty2a"]
+
+[ext_resource type="Script" uid="uid://bekmb1c6lhwm4" path="res://Scripts/naming_ui.gd" id="1_mxbee"]
+[ext_resource type="FontFile" uid="uid://bf3vie22io1gg" path="res://Minecraft.ttf" id="2_jintb"]
+
+[node name="NamingUI" type="CanvasLayer" unique_id=1516815944]
+script = ExtResource("1_mxbee")
+
+[node name="Panel" type="Control" parent="." unique_id=2135259673]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -70.0
+offset_right = 180.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Panel" unique_id=748915136]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.9)
+
+[node name="MessageLabel" type="Label" parent="Panel" unique_id=307102093]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 348.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("2_jintb")
+text = "You caught a spider! Give it a nickname?"
+autowrap_mode = 2
+
+[node name="NameInput" type="LineEdit" parent="Panel" unique_id=1849208955]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 54.0
+offset_right = 348.0
+offset_bottom = 82.0
+theme_override_fonts/font = ExtResource("2_jintb")
+placeholder_text = "Leave blank to skip"
+max_length = 20
+
+[node name="ConfirmButton" type="Button" parent="Panel" unique_id=2128095582]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 92.0
+offset_right = 100.0
+offset_bottom = 122.0
+theme_override_fonts/font = ExtResource("2_jintb")
+text = "Confirm"
+
+[node name="SkipButton" type="Button" parent="Panel" unique_id=464310173]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 92.0
+offset_right = 196.0
+offset_bottom = 122.0
+theme_override_fonts/font = ExtResource("2_jintb")
+text = "Skip"

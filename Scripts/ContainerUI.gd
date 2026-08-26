@@ -1,13 +1,9 @@
 extends CanvasLayer
 
-## Standalone, self-contained container panel. Set this up as an
-## Autoload (Project Settings -> Autoload, name it "ContainerUI")
-## pointing at ContainerUI.tscn — it'll then automatically appear in
-## every scene without needing to be manually added per-world.
-##
-## Press Tab (or whatever toggle_action you set) to show/hide it.
+## Standalone, self-contained container panel. Autoload (name it
+## "ContainerUI") pointing at ContainerUI.tscn. Press Tab to toggle.
 
-@export var toggle_action: String = "ui_focus_next" ## default Tab in Godot's Input Map
+@export var toggle_action: String = "ui_focus_next"
 
 @onready var panel: Control = $Panel
 @onready var header: Label = $Panel/Header
@@ -32,8 +28,7 @@ func _refresh() -> void:
 
 	for spider in SpiderContainer.get_spiders():
 		var label := Label.new()
-		var name_text := spider.species.species_name if spider.species else "Unknown Spider"
-		label.text = "- %s (caught %s)" % [name_text, spider.caught_time]
+		label.text = "- %s (caught %s)" % [spider.get_display_name(), spider.caught_time]
 		list.add_child(label)
 
 	if SpiderContainer.get_count() == 0:

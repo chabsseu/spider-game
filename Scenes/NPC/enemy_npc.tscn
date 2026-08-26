@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ch10tydqla2yp" path="res://Scripts/NPC/enemy_npc.gd" id="1_xqfyx"]
 [ext_resource type="Texture2D" uid="uid://cou0gmx13adab" path="res://Assets/Townspeople/Townspeople.png" id="1_ylao8"]
+[ext_resource type="Resource" uid="uid://bodd70sxmxlr8" path="res://Spiders/Jumping_Spider.tres" id="2_oxbw1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xqfyx"]
 atlas = ExtResource("1_ylao8")
@@ -27,6 +28,8 @@ radius = 13.0
 
 [node name="EnemyNPC" type="CharacterBody2D" unique_id=243201095 groups=["npc"]]
 script = ExtResource("1_xqfyx")
+npc_id = "1"
+opponent_species = ExtResource("2_oxbw1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=68794018]
 sprite_frames = SubResource("SpriteFrames_0hp1c")

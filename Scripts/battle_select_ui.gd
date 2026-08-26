@@ -1,10 +1,5 @@
 extends CanvasLayer
 
-## Autoload singleton (name it "BattleSelectUI"). Shows the player's
-## caught spiders and lets them pick one to send into a fight against
-## opponent_species. On pick, hands off to BattleContext to start the
-## battle scene transition.
-
 @onready var panel: Control = $Panel
 @onready var header: Label = $Panel/Header
 @onready var list: VBoxContainer = $Panel/List
@@ -38,7 +33,8 @@ func _refresh() -> void:
 		var row := HBoxContainer.new()
 
 		var label := Label.new()
-		var name_text := spider.species.species_name if spider.species else "Unknown Spider"
+		# Use custom display name instead of raw species name
+		var name_text := spider.get_display_name()
 		label.text = name_text
 		label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		row.add_child(label)
