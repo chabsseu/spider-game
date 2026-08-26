@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_nbpy6")
 species_name = "Chili Spider"
-difficulty = 1.5
+difficulty = 5.0
 sell_price = 15
 buy_price = 35
 description = "GAGAMBANG SILI"

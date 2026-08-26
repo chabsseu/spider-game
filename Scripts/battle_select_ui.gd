@@ -2,7 +2,8 @@ extends CanvasLayer
 
 ## Autoload singleton (name it "BattleSelectUI"). Shows the player's
 ## caught spiders and lets them pick one to send into a fight against
-## opponent_species. On pick, hands off to BattleUI to run the fight.
+## opponent_species. On pick, hands off to BattleContext to start the
+## battle scene transition.
 
 @onready var panel: Control = $Panel
 @onready var header: Label = $Panel/Header
@@ -11,14 +12,16 @@ extends CanvasLayer
 
 var _opponent_species: SpiderSpecies
 var _bet_reward: int
+var _challenger_id: String = ""
 
 func _ready() -> void:
 	panel.hide()
 	cancel_button.pressed.connect(_close)
 
-func open(opponent_species: SpiderSpecies, bet_reward: int) -> void:
+func open(opponent_species: SpiderSpecies, bet_reward: int, challenger_id: String = "") -> void:
 	_opponent_species = opponent_species
 	_bet_reward = bet_reward
+	_challenger_id = challenger_id
 	panel.show()
 	_refresh()
 
@@ -50,4 +53,4 @@ func _refresh() -> void:
 func _pick(spider: CaughtSpider) -> void:
 	panel.hide()
 	var current_scene_path := get_tree().current_scene.scene_file_path
-	BattleContext.start_battle(spider, _opponent_species, _bet_reward, current_scene_path)
+	BattleContext.start_battle(spider, _opponent_species, _bet_reward, current_scene_path, _challenger_id)

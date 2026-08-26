@@ -147,10 +147,16 @@ func _on_battle_ended(winner: Spider, loser: Spider) -> void:
 		result_label.text = "You won! +₱%d" % _bet_reward
 		result_label.modulate = Color(0.435, 0.812, 0.592)
 		
-		# Record defeated NPC if applicable
+		# 1. Marks defeated challenger inside BattleContext's primary array
+		BattleContext.mark_current_challenger_defeated()
+		
+		# 2. Syncs with world dictionary safely
+		if not BattleContext.persistent_world_data.has("defeated_opponents"):
+			BattleContext.persistent_world_data["defeated_opponents"] = []
+			
 		if BattleContext.persistent_world_data.has("last_opponent_id"):
-			var npc_id = BattleContext.persistent_world_data["last_opponent_id"]
-			if not npc_id in BattleContext.persistent_world_data["defeated_opponents"]:
+			var npc_id: String = BattleContext.persistent_world_data["last_opponent_id"]
+			if not BattleContext.persistent_world_data["defeated_opponents"].has(npc_id):
 				BattleContext.persistent_world_data["defeated_opponents"].append(npc_id)
 	else:
 		result_label.text = "You lost..."
