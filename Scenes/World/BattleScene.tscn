@@ -47,6 +47,7 @@ offset_left = -3.0
 offset_top = -19.0
 offset_right = 237.0
 offset_bottom = 5.0
+theme_override_fonts/font = ExtResource("3_irlcp")
 text = "Opponent Spider"
 
 [node name="HealthBar" type="ProgressBar" parent="OpponentArea" unique_id=1908318042]
@@ -99,6 +100,7 @@ offset_left = -8.0
 offset_top = -42.0
 offset_right = 232.0
 offset_bottom = -18.0
+theme_override_fonts/font = ExtResource("3_irlcp")
 text = "Player Spider"
 
 [node name="HealthBar" type="ProgressBar" parent="PlayerArea" unique_id=953026310]

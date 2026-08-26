@@ -62,8 +62,8 @@ func _refresh() -> void:
 		var display_name := spider.get_display_name()
 		
 		# Show base species in parentheses if a custom nickname exists
-		if spider.nickname != "" and spider.species:
-			display_name += " (%s)" % spider.species.species_name
+		# if spider.nickname != "" and spider.species:
+		# 	display_name += " (%s)" % spider.species.species_name
 
 		var price := spider.species.sell_price if spider.species else 0
 		label.text = "%s (caught %s)" % [display_name, spider.caught_time]

@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://cd6rbn5ncl4j8"]
 
 [ext_resource type="Script" uid="uid://cvmfaurfygg31" path="res://Scripts/battle_select_ui.gd" id="1_485e8"]
+[ext_resource type="FontFile" uid="uid://bf3vie22io1gg" path="res://Minecraft.ttf" id="2_dj6ha"]
+
+[sub_resource type="Theme" id="Theme_yns45"]
+default_font = ExtResource("2_dj6ha")
 
 [node name="BattleSelectUI" type="CanvasLayer" unique_id=1995340456]
 script = ExtResource("1_485e8")
@@ -34,6 +38,7 @@ offset_left = 12.0
 offset_top = 10.0
 offset_right = 348.0
 offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("2_dj6ha")
 text = "Choose your spider"
 
 [node name="List" type="VBoxContainer" parent="Panel" unique_id=260244984]
@@ -42,6 +47,7 @@ offset_left = 12.0
 offset_top = 40.0
 offset_right = 348.0
 offset_bottom = 180.0
+theme = SubResource("Theme_yns45")
 
 [node name="CancelButton" type="Button" parent="Panel" unique_id=169424307]
 layout_mode = 0
@@ -49,4 +55,5 @@ offset_left = 12.0
 offset_top = 190.0
 offset_right = 100.0
 offset_bottom = 218.0
+theme_override_fonts/font = ExtResource("2_dj6ha")
 text = "Cancel"

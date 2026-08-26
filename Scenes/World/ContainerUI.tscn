@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://c7lreop8xd413"]
 
 [ext_resource type="Script" uid="uid://b4xbeexw3pksh" path="res://Scripts/ContainerUI.gd" id="1_cftu4"]
+[ext_resource type="FontFile" uid="uid://bf3vie22io1gg" path="res://Minecraft.ttf" id="2_klq80"]
+
+[sub_resource type="Theme" id="Theme_f18n5"]
+default_font = ExtResource("2_klq80")
 
 [node name="ContainerUI" type="CanvasLayer" unique_id=1375906538]
 script = ExtResource("1_cftu4")
@@ -33,6 +37,7 @@ offset_left = 10.0
 offset_top = 8.0
 offset_right = 230.0
 offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("2_klq80")
 text = "Container (0/3)"
 
 [node name="List" type="VBoxContainer" parent="Panel" unique_id=595411904]
@@ -41,3 +46,4 @@ offset_left = 10.0
 offset_top = 34.0
 offset_right = 230.0
 offset_bottom = 130.0
+theme = SubResource("Theme_f18n5")
