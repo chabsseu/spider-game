@@ -26,6 +26,7 @@ BattleSelectUi="*uid://cd6rbn5ncl4j8"
 BattleContext="*uid://boaumhx8k8kxk"
 Battlecontroller="*uid://stkyx2koy5ry"
 NamingUi="*uid://jgarhtpqty2a"
+DialogUI="*uid://cdhfudnysrqjm"
 
 [display]
 

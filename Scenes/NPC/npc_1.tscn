@@ -162,9 +162,11 @@ animations = [{
 radius = 5.0
 height = 16.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tiduu"]
+radius = 13.038404
+
 [node name="npc1" type="CharacterBody2D" unique_id=1295285643]
 script = ExtResource("1_tiduu")
-patrol_points = Array[Vector2]([Vector2(150, 100), Vector2(150, 300)])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1628821979]
 position = Vector2(0, -12)
@@ -175,3 +177,9 @@ frame_progress = 0.06500623
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=811650209]
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_jxyi6")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=396328047]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=759815351]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_tiduu")

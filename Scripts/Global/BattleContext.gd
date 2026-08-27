@@ -14,6 +14,8 @@ var _has_return_position: bool = false
 var _current_challenger_id: String = ""
 var persistent_world_data: Dictionary = {}
 var active_web_spots_data: Array[Dictionary] = []
+
+# Primary array tracking defeated challengers
 var _defeated_challenger_ids: Array[String] = []
 
 func start_battle(spider: CaughtSpider, opponent: SpiderSpecies, reward: int, current_scene_path: String = "", challenger_id: String = "") -> void:
@@ -49,15 +51,31 @@ func consume_return_position(player_node: Node2D) -> bool:
 ## --- Defeated Challenger Tracking ---
 
 func get_npc_id(npc: Node) -> String:
+	if not npc:
+		return ""
+	# Prefer an explicit export variable 'npc_id' if present
 	if "npc_id" in npc and not str(npc.npc_id).is_empty():
 		return str(npc.npc_id)
-	return npc.name
+	# Use NodePath string to guarantee absolute uniqueness across the world scene
+	return String(npc.get_path())
 
 func is_npc_defeated(npc: Node) -> bool:
+	if not npc:
+		return false
 	var id := get_npc_id(npc)
 	return _defeated_challenger_ids.has(id)
 
+func mark_npc_defeated(npc_or_id) -> void:
+	var id: String = ""
+	if npc_or_id is Node:
+		id = get_npc_id(npc_or_id)
+	elif npc_or_id is String:
+		id = npc_or_id
+
+	if id != "" and not _defeated_challenger_ids.has(id):
+		_defeated_challenger_ids.append(id)
+		print("Challenger marked as defeated: ", id)
+
 func mark_current_challenger_defeated() -> void:
-	if _current_challenger_id != "" and not _defeated_challenger_ids.has(_current_challenger_id):
-		_defeated_challenger_ids.append(_current_challenger_id)
-		print("Challenger marked as defeated: ", _current_challenger_id)
+	if _current_challenger_id != "":
+		mark_npc_defeated(_current_challenger_id)

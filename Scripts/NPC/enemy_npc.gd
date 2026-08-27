@@ -1,59 +1,115 @@
 extends CharacterBody2D
 class_name ChallengerNPC
 
-## Stationary NPC script. Set a unique `npc_id` in the Inspector 
-## for every challenger placed in your world (e.g., "brgy1_kid_01").
-
 @export var npc_id: String = ""
 @export var opponent_species: SpiderSpecies
 @export var bet_reward: int = 30
+
+@export var speaker_name: String = "Kevin"
+
+@export var challenge_lines: Array[String] = [
+	"Think your spider's got what it takes? Let's bet on it!"
+]
+
+@export var defeated_lines: Array[String] = [
+	"You already beat my spider. No rematch."
+]
+
+@export var no_spiders_lines: Array[String] = [
+	"Come back when you've got a spider to fight with."
+]
+
 @export var interact_action: String = "ui_accept"
 
 @onready var detection_area: Area2D = $DetectionArea
 
 var player_in_range: bool = false
+var is_conversing: bool = false
+
+
+enum ConversationType {
+	NONE,
+	DEFEATED,
+	NO_SPIDERS,
+	CHALLENGE
+}
+
 
 func _ready() -> void:
 	add_to_group("npc")
-	
-	# Fallback if no ID is assigned in Inspector
-	if npc_id.is_empty():
-		npc_id = name
-		
+
 	detection_area.body_entered.connect(_on_body_entered)
 	detection_area.body_exited.connect(_on_body_exited)
 
-	# Optional: Check if already defeated on room load
-	if BattleContext.is_npc_defeated(self):
-		_on_already_defeated()
+func _unhandled_input(event: InputEvent) -> void:
+	if not player_in_range or is_conversing:
+		return
 
-func _on_already_defeated() -> void:
-	print("NPC ", npc_id, " is already defeated.")
-	# Optional: Visual indicator or disable collision/interaction
-	# $Sprite2D.modulate = Color(0.5, 0.5, 0.5)
-
-func _process(_delta: float) -> void:
-	if player_in_range and Input.is_action_just_pressed(interact_action):
+	if event.is_action_pressed(interact_action):
+		get_viewport().set_input_as_handled()
 		_try_start_challenge()
 
+# func _process(_delta: float) -> void:
+# 	if not player_in_range:
+# 		return
+
+# 	if is_conversing:
+# 		return
+
+# 	if Input.is_action_just_pressed(interact_action):
+# 		_try_start_challenge()
+
+
 func _try_start_challenge() -> void:
+	is_conversing = true
+
+	var conversation_type: ConversationType = ConversationType.NONE
+	var lines: Array[String] = []
+
+	# Already defeated.
 	if BattleContext.is_npc_defeated(self):
-		print("You already beat this spider. No rematch.")
-		return
+		conversation_type = ConversationType.DEFEATED
+		lines = defeated_lines
 
-	if SpiderContainer.get_count() == 0:
-		print("You have no spiders to fight with!")
-		return
+	# Player has no spiders.
+	elif SpiderContainer.get_count() == 0:
+		conversation_type = ConversationType.NO_SPIDERS
+		lines = no_spiders_lines
 
-	if not opponent_species:
+	# NPC has no opponent.
+	elif opponent_species == null:
 		push_warning("ChallengerNPC has no opponent_species assigned.")
+
+		is_conversing = false
 		return
 
-	BattleSelectUi.open(opponent_species, bet_reward, BattleContext.get_npc_id(self))
+	# Normal challenge.
+	else:
+		conversation_type = ConversationType.CHALLENGE
+		lines = challenge_lines
+
+	# Start dialogue.
+	DialogUI.say(lines, speaker_name)
+
+	# Wait for dialogue to finish.
+	await DialogUI.finished
+
+	# Dialogue is done.
+	is_conversing = false
+
+	# Do whatever this conversation requires.
+	if conversation_type == ConversationType.CHALLENGE:
+		BattleSelectUi.open(
+			opponent_species,
+			bet_reward,
+			BattleContext.get_npc_id(self)
+		)
+
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		player_in_range = true
+
 
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):

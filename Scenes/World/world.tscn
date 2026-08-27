@@ -1218,8 +1218,8 @@ species_pool = Array[ExtResource("11_pvt60")]([ExtResource("12_vbhkl"), ExtResou
 [node name="ContainerUI" parent="." unique_id=1375906538 instance=ExtResource("13_vbhkl")]
 
 [node name="Tradernpc" parent="." unique_id=2015198102 instance=ExtResource("15_4pv6w")]
-position = Vector2(70, -22)
+position = Vector2(73, -25)
 
 [node name="EnemyNPC" parent="." unique_id=243201095 instance=ExtResource("16_dr8i3")]
 z_index = 1
-position = Vector2(320, -128)
+position = Vector2(319, -128)
