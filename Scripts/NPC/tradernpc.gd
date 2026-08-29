@@ -2,8 +2,8 @@ extends CharacterBody2D
 class_name TraderNPC
 
 @export var species_for_sale: Array[SpiderSpecies] = []
-@export var greeting_lines: Array[String] = ["Looking to trade? I've got a few spiders worth your while."]
-@export var speaker_name: String = "Trader"
+@export var greeting_lines: Array[String] = ["Looking for spiders? I've got a few spiders worth your while."]
+@export var speaker_name: String = "Alvin"
 @export var interact_action: String = "ui_accept"
 
 @onready var detection_area: Area2D = $DetectionArea
@@ -41,4 +41,5 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
+		TraderShopUi.close()
 		player_in_range = false

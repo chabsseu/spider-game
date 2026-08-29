@@ -31,6 +31,7 @@ radius = 21.0
 [node name="Tradernpc" type="CharacterBody2D" unique_id=2015198102]
 script = ExtResource("1_4s3kp")
 species_for_sale = Array[ExtResource("2_uutlm")]([ExtResource("3_nu7q4"), ExtResource("4_g2oau")])
+speaker_name = "Old man Alvin"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=935893509]
 sprite_frames = SubResource("SpriteFrames_mumki")

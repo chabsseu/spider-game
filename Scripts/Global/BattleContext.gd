@@ -34,12 +34,12 @@ func start_battle(spider: CaughtSpider, opponent: SpiderSpecies, reward: int, cu
 	if Daynightcycle:
 		Daynightcycle.set_paused(true)
 
-	get_tree().change_scene_to_file("res://Scenes/World/BattleScene.tscn")
+	TransitionUi.circle_to(func(): get_tree().change_scene_to_file("res://Scenes/World/BattleScene.tscn"))
 
 func return_to_world() -> void:
 	if Daynightcycle:
 		Daynightcycle.set_paused(false)
-	get_tree().change_scene_to_file(return_scene_path)
+	TransitionUi.fade_to(func(): get_tree().change_scene_to_file(return_scene_path))
 
 func consume_return_position(player_node: Node2D) -> bool:
 	if not _has_return_position:

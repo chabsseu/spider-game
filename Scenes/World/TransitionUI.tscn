@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://5e2r0xdldpj"]
+
+[ext_resource type="Script" uid="uid://bxyoqa5pjdhma" path="res://Scripts/Global/transition_ui.gd" id="1_byumr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
+
+[node name="TransitionUI" type="CanvasLayer" unique_id=132361789]
+script = ExtResource("1_byumr")
+
+[node name="FadeRect" type="ColorRect" parent="." unique_id=392870583]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CircleRect" type="ColorRect" parent="." unique_id=1275923781]
+material = SubResource("ShaderMaterial_1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

@@ -27,6 +27,7 @@ BattleContext="*uid://boaumhx8k8kxk"
 Battlecontroller="*uid://stkyx2koy5ry"
 NamingUi="*uid://jgarhtpqty2a"
 DialogUI="*uid://cdhfudnysrqjm"
+TransitionUi="*uid://5e2r0xdldpj"
 
 [display]
 

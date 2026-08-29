@@ -48,7 +48,6 @@ func _ready() -> void:
 	var player_spider := Spider.from_species(caught_spider.species)
 	var opponent_spider := Spider.from_species(opponent_species)
 
-	# Override the spider object's name with the custom display name
 	player_spider.spider_name = caught_spider.get_display_name()
 	_player_spider_name = player_spider.spider_name
 
@@ -58,8 +57,16 @@ func _ready() -> void:
 	_set_display_sprite(player_sprite, player_placeholder, caught_spider.species.icon)
 	_set_display_sprite(opponent_sprite, opponent_placeholder, opponent_species.icon)
 
-	battle_controller.start_battle(player_spider, opponent_spider)
+	# Pre-assign spiders so UI bars display correctly behind the screen
+	battle_controller.spider_a = player_spider
+	battle_controller.spider_b = opponent_spider
 	_update_bars()
+
+	# Perfectly wait until TransitionUi finishes opening completely
+	await TransitionUi.transition_finished
+
+	# Start battle the exact frame the circle transition finishes expanding
+	battle_controller.start_battle(player_spider, opponent_spider)
 
 func _process(delta: float) -> void:
 	if _shake_duration > 0.0:
