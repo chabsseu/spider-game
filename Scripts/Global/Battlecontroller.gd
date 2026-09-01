@@ -46,12 +46,17 @@ func _on_tick() -> void:
 	if not _running:
 		return
 
-	# Both spiders' gauges advance every tick; either or both may fire.
+	# Check Spider A gauge
 	if spider_a.tick_gauge():
 		_resolve_attack(spider_a, spider_b)
 		if _check_for_winner():
 			return
 
+	# Safety check: Ensure the battle is still active before Spider B acts
+	if not _running:
+		return
+
+	# Check Spider B gauge
 	if spider_b.tick_gauge():
 		_resolve_attack(spider_b, spider_a)
 		if _check_for_winner():

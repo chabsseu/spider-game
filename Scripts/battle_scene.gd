@@ -1,5 +1,8 @@
 extends Node2D
 
+# Load your pixel font (Ensure the path matches your project structure)
+const MINECRAFT_FONT := preload("res://Minecraft.ttf")
+
 @onready var opponent_sprite: TextureRect = $OpponentArea/Sprite
 @onready var opponent_placeholder: ColorRect = $OpponentArea/Placeholder
 @onready var opponent_name_label: Label = $OpponentArea/NameLabel
@@ -94,12 +97,86 @@ func _set_display_sprite(sprite_rect: TextureRect, placeholder: ColorRect, icon:
 func _on_attack_landed(attacker: Spider, defender: Spider, result: Dictionary) -> void:
 	_update_bars()
 
-	if result["is_crit"]:
+	# Object reference comparison fixes the duplicate name targeting bug
+	var is_player_attacker := (attacker == battle_controller.spider_a)
+	
+	var atk_sprite := player_sprite if is_player_attacker else opponent_sprite
+	var def_sprite := opponent_sprite if is_player_attacker else player_sprite
+	var def_area: Control = $OpponentArea if is_player_attacker else $PlayerArea
+
+	var is_crit: bool = result["is_crit"]
+	var dmg: int = result["health_damage"]
+	var absorbed: int = result["absorbed"]
+
+	# 1. Screen Shake
+	if is_crit:
 		shake(SHAKE_CRIT_STRENGTH, SHAKE_CRIT_DURATION)
 	else:
 		shake(SHAKE_NORMAL_STRENGTH, SHAKE_NORMAL_DURATION)
 
+	# 2. Visual Polish Animations
+	_play_attack_animations(atk_sprite, def_sprite, is_crit)
+	_spawn_damage_number(def_area, dmg if dmg > 0 else absorbed, is_crit, (absorbed > 0 and dmg == 0))
+
+	# 3. Log Output
 	_show_broadcast(attacker, defender, result)
+
+func _play_attack_animations(attacker_sprite: TextureRect, defender_sprite: TextureRect, is_crit: bool) -> void:
+	var tween := create_tween().set_parallel(true)
+	
+	# Determine forward direction relative to player/opponent placement
+	var is_player := (attacker_sprite == player_sprite)
+	var forward_dir := Vector2.RIGHT if is_player else Vector2.LEFT
+	var lunge_distance := 40.0 if is_crit else 20.0
+	
+	# Attacker Lunge Forward & Snap Back
+	var orig_pos: Vector2 = attacker_sprite.position
+	tween.tween_property(attacker_sprite, "position", orig_pos + (forward_dir * lunge_distance), 0.08).set_trans(Tween.TRANS_QUAD)
+	tween.chain().tween_property(attacker_sprite, "position", orig_pos, 0.12).set_trans(Tween.TRANS_QUAD)
+	
+	# Defender Flash Red on Impact
+	defender_sprite.modulate = Color(2.5, 0.4, 0.4)
+	tween.tween_property(defender_sprite, "modulate", Color.WHITE, 0.25)
+
+func _spawn_damage_number(defender_area: Control, amount: int, is_crit: bool, shield_absorbed: bool) -> void:
+	var label := Label.new()
+	
+	# Apply Minecraft Font
+	label.add_theme_font_override("font", MINECRAFT_FONT)
+	
+	if shield_absorbed:
+		label.text = "BLOCKED!"
+		label.modulate = Color(0.4, 0.7, 1.0)
+		label.add_theme_font_size_override("font_size", 14)
+	elif is_crit:
+		label.text = "%d CRIT!" % amount
+		label.modulate = Color(1.0, 0.85, 0.2)
+		label.add_theme_font_size_override("font_size", 64)
+	else:
+		label.text = "-%d" % amount
+		label.modulate = Color(1.0, 0.35, 0.35)
+		label.add_theme_font_size_override("font_size", 32)
+
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.global_position = defender_area.global_position + Vector2(defender_area.size.x * 0.3, -10.0)
+	
+	add_child(label)
+	
+	# Set pivot after adding to tree for proper scaling origin
+	label.pivot_offset = label.size / 2.0
+	
+	var float_distance := 50.0 if is_crit else 35.0
+	var tween := create_tween().set_parallel(true)
+	
+	label.scale = Vector2(0.5, 0.5)
+	var target_scale := Vector2(1.2, 1.2) if is_crit else Vector2(1.0, 1.0)
+	tween.tween_property(label, "scale", target_scale, 0.12).set_ease(Tween.EASE_OUT)
+	
+	tween.tween_property(label, "global_position:y", label.global_position.y - float_distance, 0.45).set_ease(Tween.EASE_OUT)
+	tween.tween_property(label, "modulate:a", 0.0, 0.45).set_ease(Tween.EASE_IN)
+	
+	await tween.finished
+	label.queue_free()
 
 func _show_broadcast(attacker: Spider, defender: Spider, result: Dictionary) -> void:
 	var dmg: int = result["health_damage"]
@@ -139,28 +216,35 @@ func _update_bars() -> void:
 	if not a or not b:
 		return
 
+	# Set maximum values directly
 	player_health_bar.max_value = a.max_health
-	player_health_bar.value = a.current_health
 	player_shield_bar.max_value = max(1, a.max_shield)
-	player_shield_bar.value = a.current_shield
 
 	opponent_health_bar.max_value = b.max_health
-	opponent_health_bar.value = b.current_health
 	opponent_shield_bar.max_value = max(1, b.max_shield)
-	opponent_shield_bar.value = b.current_shield
+
+	# Animate value transitions smoothly using a parallel Tween
+	var tween := create_tween().set_parallel(true)
+	var duration := 0.25 # Seconds to reach new value
+
+	tween.tween_property(player_health_bar, "value", a.current_health, duration).set_ease(Tween.EASE_OUT)
+	tween.tween_property(player_shield_bar, "value", a.current_shield, duration).set_ease(Tween.EASE_OUT)
+
+	tween.tween_property(opponent_health_bar, "value", b.current_health, duration).set_ease(Tween.EASE_OUT)
+	tween.tween_property(opponent_shield_bar, "value", b.current_shield, duration).set_ease(Tween.EASE_OUT)
 
 func _on_battle_ended(winner: Spider, loser: Spider) -> void:
 	_update_bars()
-	var player_won := winner.spider_name == _player_spider_name
+	
+	# Object reference comparison fixes winner detection when names match
+	var player_won := (winner == battle_controller.spider_a)
 	if player_won:
 		Economy.add_money(_bet_reward)
 		result_label.text = "You won! +₱%d" % _bet_reward
 		result_label.modulate = Color(0.435, 0.812, 0.592)
 		
-		# 1. Marks defeated challenger inside BattleContext's primary array
 		BattleContext.mark_current_challenger_defeated()
 		
-		# 2. Syncs with world dictionary safely
 		if not BattleContext.persistent_world_data.has("defeated_opponents"):
 			BattleContext.persistent_world_data["defeated_opponents"] = []
 			
