@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SpiderSpecies" format=3 uid="uid://bg8v56clvxfsb"]
 
-[ext_resource type="Texture2D" uid="uid://5l82pf5ev6km" path="res://icon.svg" id="1_8nxrm"]
+[ext_resource type="Texture2D" uid="uid://cg1oc0nl4bmf5" path="res://Assets/Spiders/orb_weaver.png" id="1_8nxrm"]
 [ext_resource type="Script" uid="uid://w5fyoqsnpr1g" path="res://Spiders/SpiderSpecies.gd" id="1_emm4n"]
 
 [resource]

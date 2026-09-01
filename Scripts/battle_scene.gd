@@ -57,8 +57,10 @@ func _ready() -> void:
 	player_name_label.text = _player_spider_name
 	opponent_name_label.text = opponent_spider.spider_name
 
-	_set_display_sprite(player_sprite, player_placeholder, caught_spider.species.icon)
-	_set_display_sprite(opponent_sprite, opponent_placeholder, opponent_species.icon)
+	_set_display_sprite(player_sprite, player_placeholder, caught_spider.species.icon, true)
+	_set_display_sprite(opponent_sprite, opponent_placeholder, opponent_species.icon, false)
+
+	
 
 	# Pre-assign spiders so UI bars display correctly behind the screen
 	battle_controller.spider_a = player_spider
@@ -85,9 +87,10 @@ func shake(strength: float, duration: float) -> void:
 	_shake_strength = strength
 	_shake_duration = duration
 
-func _set_display_sprite(sprite_rect: TextureRect, placeholder: ColorRect, icon: Texture2D) -> void:
+func _set_display_sprite(sprite_rect: TextureRect, placeholder: ColorRect, icon: Texture2D, flip_horizontal: bool = false) -> void:
 	if icon:
 		sprite_rect.texture = icon
+		sprite_rect.flip_h = flip_horizontal
 		sprite_rect.show()
 		placeholder.hide()
 	else:
