@@ -28,6 +28,7 @@ Battlecontroller="*uid://stkyx2koy5ry"
 NamingUi="*uid://jgarhtpqty2a"
 DialogUI="*uid://cdhfudnysrqjm"
 TransitionUi="*uid://5e2r0xdldpj"
+SpiderTooltip="*res://Scenes/World/SpiderTooltip.tscn"
 
 [display]
 

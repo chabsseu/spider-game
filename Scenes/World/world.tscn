@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bxh8umic28wmh" path="res://Scenes/NPC/tradernpc.tscn" id="15_4pv6w"]
 [ext_resource type="PackedScene" uid="uid://31no8lp61qwa" path="res://Scenes/NPC/enemy_npc.tscn" id="16_dr8i3"]
 [ext_resource type="PackedScene" uid="uid://5e2r0xdldpj" path="res://Scenes/World/TransitionUI.tscn" id="17_7aaxd"]
+[ext_resource type="PackedScene" uid="uid://rrqexc41f3s1" path="res://Scenes/World/tooltip.tscn" id="18_hiquf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vadfg"]
 texture = ExtResource("2_3rhlx")
@@ -1226,3 +1227,5 @@ z_index = 1
 position = Vector2(319, -128)
 
 [node name="TransitionUI" parent="." unique_id=132361789 instance=ExtResource("17_7aaxd")]
+
+[node name="Panel" parent="." unique_id=1271951233 instance=ExtResource("18_hiquf")]

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dm01rju02cowg"]
+
+[ext_resource type="Script" uid="uid://cg8ibccjcj0hk" path="res://Scripts/spider_tooltip.gd" id="1_urivj"]
+
+[node name="SpiderTooltip" type="CanvasLayer" unique_id=969208610]
+script = ExtResource("1_urivj")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1717131711]
+offset_right = 200.0
+offset_bottom = 100.0
+
+[node name="Label" type="Label" parent="PanelContainer" unique_id=218772219]
+layout_mode = 2
+text = "Tooltip"

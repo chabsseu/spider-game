@@ -2,8 +2,7 @@ extends Resource
 class_name Spider
 
 ## Runtime battle data for one spider in a fight. Build these from a
-## SpiderSpecies via Spider.from_species() rather than constructing
-## by hand — that keeps species data as the single source of truth.
+## SpiderSpecies or CaughtSpider via Spider.from_species().
 
 @export var spider_name: String = "Unnamed Spider"
 @export var max_health: int = 100
@@ -20,14 +19,33 @@ const CRIT_MULTIPLIER := 1.6
 const GAUGE_MAX := 100.0
 const SPEED_TO_GAUGE_RATE := 1.2
 
-static func from_species(species: SpiderSpecies) -> Spider:
+static func from_species(species_or_caught) -> Spider:
 	var s := Spider.new()
-	s.spider_name = species.species_name
-	s.max_health = int(species.health) if species.health > 0 else 100
-	s.speed = int(species.speed) if species.speed > 0 else 5
-	s.strength = int(species.strength) if species.strength > 0 else 5
-	s.crit_chance = int(species.crit_chance) if species.crit_chance > 0 else 10
-	s.max_shield = int(species.shield)
+	var base_species: SpiderSpecies
+	var caught: CaughtSpider = null
+
+	if species_or_caught is CaughtSpider:
+		caught = species_or_caught
+		base_species = caught.species
+	elif species_or_caught is SpiderSpecies:
+		base_species = species_or_caught
+
+	if not base_species:
+		return s
+
+	s.spider_name = base_species.species_name
+	
+	# Extract individual bonuses if passing a CaughtSpider
+	var b_hp := caught.bonus_health if caught else 0
+	var b_str := caught.bonus_strength if caught else 0
+	var b_spd := caught.bonus_speed if caught else 0
+
+	s.max_health = max(10, (int(base_species.health) if base_species.health > 0 else 100) + b_hp)
+	s.speed = max(1, (int(base_species.speed) if base_species.speed > 0 else 5) + b_spd)
+	s.strength = max(1, (int(base_species.strength) if base_species.strength > 0 else 5) + b_str)
+	s.crit_chance = int(base_species.crit_chance) if base_species.crit_chance > 0 else 10
+	s.max_shield = int(base_species.shield)
+	
 	return s
 
 func reset_for_battle() -> void:

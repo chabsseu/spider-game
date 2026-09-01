@@ -14,8 +14,6 @@ signal container_changed # fires on any add/remove — UI should listen to this 
 
 var _spiders: Array[CaughtSpider] = []
 
-## Returns the newly created CaughtSpider on success, or null if the
-## container is full. Accepts an optional custom nickname.
 func add_spider(species: SpiderSpecies, nickname: String = "") -> CaughtSpider:
 	if is_full():
 		container_full.emit()
@@ -42,8 +40,6 @@ func sell_spider(spider: CaughtSpider) -> void:
 	spider_sold.emit(spider, price)
 	container_changed.emit()
 
-## Buys a spider of the given species from the trader. Returns false
-## if the player can't afford it or the container is full.
 func buy_spider(species: SpiderSpecies, nickname: String = "") -> bool:
 	if is_full():
 		container_full.emit()
