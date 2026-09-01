@@ -11,17 +11,23 @@ var nickname: String = ""
 var bonus_health: int = 0
 var bonus_strength: int = 0
 var bonus_speed: int = 0
+var bonus_crit_rate: float = 0.0 # e.g. 0.05 (+5%)
+var bonus_defense: int = 0
 
-func _init(p_species: SpiderSpecies = null, p_caught_time: String = "", p_nickname: String = "") -> void:
+func _init(p_species: SpiderSpecies, p_time: String = "", p_nickname: String = "") -> void:
 	species = p_species
-	caught_time = p_caught_time
+	caught_time = p_time
 	nickname = p_nickname
 
-	# Roll unique stat bonuses when a new spider is created
-	if p_species:
-		bonus_health = randi_range(-5, 15)
-		bonus_strength = randi_range(-2, 3)
-		bonus_speed = randi_range(-1, 2)
+	# Stat rolls
+	bonus_health = randi_range(-2, 10)
+	bonus_strength = randi_range(-1, 3)
+	bonus_speed = randi_range(-1, 3)
+	
+	# NEW STAT ROLLS:
+	bonus_defense = randi_range(0, 2)
+	bonus_crit_rate = randf_range(0.0, 0.10) # 0% to +10% bonus crit
+		
 
 func get_display_name() -> String:
 	if nickname != "":
