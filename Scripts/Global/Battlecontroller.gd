@@ -3,8 +3,8 @@ class_name BattleController
 
 ## Runs an auto-battle between two Spider resources. Attach this to a
 ## Node in your battle scene, assign spider_a / spider_b (or call
-## start_battle with two Spider instances), and connect to the
-## signals below to drive your UI/animations.
+## start_battle with two Spider instances or CaughtSpider objects), and 
+## connect to the signals below to drive your UI/animations.
 
 signal battle_started
 signal attack_landed(attacker: Spider, defender: Spider, result: Dictionary)
@@ -29,18 +29,30 @@ func _ready() -> void:
 	if autostart and spider_a and spider_b:
 		start_battle(spider_a, spider_b)
 
-func start_battle(a: Spider, b: Spider) -> void:
-	spider_a = a
-	spider_b = b
+## Accepts either runtime `Spider` resources or `CaughtSpider` / `SpiderSpecies` inputs.
+func start_battle(a_input, b_input) -> void:
+	# Convert inputs to runtime Spider instances if raw CaughtSpider/SpiderSpecies are passed
+	if a_input is Spider:
+		spider_a = a_input
+	else:
+		spider_a = Spider.from_species(a_input)
+
+	if b_input is Spider:
+		spider_b = b_input
+	else:
+		spider_b = Spider.from_species(b_input)
+
 	spider_a.reset_for_battle()
 	spider_b.reset_for_battle()
+
 	_running = true
 	_tick_timer.start()
 	battle_started.emit()
 
 func stop_battle() -> void:
 	_running = false
-	_tick_timer.stop()
+	if _tick_timer:
+		_tick_timer.stop()
 
 func _on_tick() -> void:
 	if not _running:

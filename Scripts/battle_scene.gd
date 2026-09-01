@@ -48,7 +48,8 @@ func _ready() -> void:
 	var caught_spider: CaughtSpider = BattleContext.player_spider_data
 	var opponent_species: SpiderSpecies = BattleContext.opponent_species
 
-	var player_spider := Spider.from_species(caught_spider.species)
+	# FIXED: Pass caught_spider directly so individual bonus stats are calculated!
+	var player_spider := Spider.from_species(caught_spider)
 	var opponent_spider := Spider.from_species(opponent_species)
 
 	player_spider.spider_name = caught_spider.get_display_name()
@@ -59,8 +60,6 @@ func _ready() -> void:
 
 	_set_display_sprite(player_sprite, player_placeholder, caught_spider.species.icon, true)
 	_set_display_sprite(opponent_sprite, opponent_placeholder, opponent_species.icon, false)
-
-	
 
 	# Pre-assign spiders so UI bars display correctly behind the screen
 	battle_controller.spider_a = player_spider
