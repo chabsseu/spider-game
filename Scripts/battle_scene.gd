@@ -99,28 +99,29 @@ func _set_display_sprite(sprite_rect: TextureRect, placeholder: ColorRect, icon:
 func _on_attack_landed(attacker: Spider, defender: Spider, result: Dictionary) -> void:
 	_update_bars()
 
-	# Object reference comparison fixes the duplicate name targeting bug
 	var is_player_attacker := (attacker == battle_controller.spider_a)
-	
 	var atk_sprite := player_sprite if is_player_attacker else opponent_sprite
 	var def_sprite := opponent_sprite if is_player_attacker else player_sprite
 	var def_area: Control = $OpponentArea if is_player_attacker else $PlayerArea
 
-	var is_crit: bool = result["is_crit"]
-	var dmg: int = result["health_damage"]
-	var absorbed: int = result["absorbed"]
+	var dodged: bool = result.get("dodged", false)
+	var is_crit: bool = result.get("is_crit", false)
+	var dmg: int = result.get("health_damage", 0)
+	var absorbed: int = result.get("absorbed", 0)
 
-	# 1. Screen Shake
+	if dodged:
+		_spawn_damage_number(def_area, 0, false, false, true)
+		broadcast_label.text += "\n" + ("%s DODGED the attack!" % defender.spider_name)
+		_trim_broadcast_log()
+		return
+
 	if is_crit:
 		shake(SHAKE_CRIT_STRENGTH, SHAKE_CRIT_DURATION)
 	else:
 		shake(SHAKE_NORMAL_STRENGTH, SHAKE_NORMAL_DURATION)
 
-	# 2. Visual Polish Animations
 	_play_attack_animations(atk_sprite, def_sprite, is_crit)
-	_spawn_damage_number(def_area, dmg if dmg > 0 else absorbed, is_crit, (absorbed > 0 and dmg == 0))
-
-	# 3. Log Output
+	_spawn_damage_number(def_area, dmg if dmg > 0 else absorbed, is_crit, (absorbed > 0 and dmg == 0), false)
 	_show_broadcast(attacker, defender, result)
 
 func _play_attack_animations(attacker_sprite: TextureRect, defender_sprite: TextureRect, is_crit: bool) -> void:
@@ -140,13 +141,15 @@ func _play_attack_animations(attacker_sprite: TextureRect, defender_sprite: Text
 	defender_sprite.modulate = Color(2.5, 0.4, 0.4)
 	tween.tween_property(defender_sprite, "modulate", Color.WHITE, 0.25)
 
-func _spawn_damage_number(defender_area: Control, amount: int, is_crit: bool, shield_absorbed: bool) -> void:
+func _spawn_damage_number(defender_area: Control, amount: int, is_crit: bool, shield_absorbed: bool, is_dodge: bool) -> void:
 	var label := Label.new()
-	
-	# Apply Minecraft Font
 	label.add_theme_font_override("font", MINECRAFT_FONT)
-	
-	if shield_absorbed:
+
+	if is_dodge:
+		label.text = "DODGED!"
+		label.modulate = Color(0.3, 0.9, 0.9) # Cyan
+		label.add_theme_font_size_override("font_size", 24)
+	elif shield_absorbed:
 		label.text = "BLOCKED!"
 		label.modulate = Color(0.4, 0.7, 1.0)
 		label.add_theme_font_size_override("font_size", 14)
@@ -161,19 +164,15 @@ func _spawn_damage_number(defender_area: Control, amount: int, is_crit: bool, sh
 
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.global_position = defender_area.global_position + Vector2(defender_area.size.x * 0.3, -10.0)
-	
 	add_child(label)
 	
-	# Set pivot after adding to tree for proper scaling origin
 	label.pivot_offset = label.size / 2.0
-	
 	var float_distance := 50.0 if is_crit else 35.0
 	var tween := create_tween().set_parallel(true)
 	
 	label.scale = Vector2(0.5, 0.5)
 	var target_scale := Vector2(1.2, 1.2) if is_crit else Vector2(1.0, 1.0)
 	tween.tween_property(label, "scale", target_scale, 0.12).set_ease(Tween.EASE_OUT)
-	
 	tween.tween_property(label, "global_position:y", label.global_position.y - float_distance, 0.45).set_ease(Tween.EASE_OUT)
 	tween.tween_property(label, "modulate:a", 0.0, 0.45).set_ease(Tween.EASE_IN)
 	

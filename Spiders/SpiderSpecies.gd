@@ -20,6 +20,6 @@ class_name SpiderSpecies
 @export var strength: float
 @export var shield: float
 @export var crit_chance: float
-
+@export var evasion: float
 
 @export var icon: Texture2D
