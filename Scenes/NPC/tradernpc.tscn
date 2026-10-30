@@ -2,13 +2,22 @@
 
 [ext_resource type="Script" uid="uid://cvmrj6ppsofr" path="res://Scripts/NPC/tradernpc.gd" id="1_4s3kp"]
 [ext_resource type="Texture2D" uid="uid://cou0gmx13adab" path="res://Assets/Townspeople/Townspeople.png" id="1_xli3h"]
-[ext_resource type="Script" uid="uid://w5fyoqsnpr1g" path="res://Spiders/SpiderSpecies.gd" id="2_uutlm"]
-[ext_resource type="Resource" uid="uid://bg8v56clvxfsb" path="res://Spiders/orb_weaver_spider.tres" id="3_nu7q4"]
-[ext_resource type="Resource" uid="uid://bodd70sxmxlr8" path="res://Spiders/Jumping_Spider.tres" id="4_g2oau"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4s3kp"]
 atlas = ExtResource("1_xli3h")
-region = Rect2(144, 216, 18, 24)
+region = Rect2(144, 208, 18, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mumki"]
+atlas = ExtResource("1_xli3h")
+region = Rect2(144, 234, 18, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnfvo"]
+atlas = ExtResource("1_xli3h")
+region = Rect2(144, 260, 18, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uutlm"]
+atlas = ExtResource("1_xli3h")
+region = Rect2(144, 286, 18, 26)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mumki"]
 animations = [{
@@ -17,7 +26,31 @@ animations = [{
 "texture": SubResource("AtlasTexture_4s3kp")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mumki")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnfvo")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uutlm")
+}],
+"loop": true,
+"name": &"idle_up",
 "speed": 5.0
 }]
 
@@ -30,12 +63,12 @@ radius = 21.0
 
 [node name="Tradernpc" type="CharacterBody2D" unique_id=2015198102]
 script = ExtResource("1_4s3kp")
-species_for_sale = Array[ExtResource("2_uutlm")]([ExtResource("3_nu7q4"), ExtResource("4_g2oau")])
 speaker_name = "Old man Alvin"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=935893509]
+position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_mumki")
-animation = &"idle"
+animation = &"idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=90214457]
 position = Vector2(0, -3)
@@ -44,7 +77,8 @@ shape = SubResource("CapsuleShape2D_qnfvo")
 [node name="DetectionArea" type="Area2D" parent="." unique_id=533055543]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1021572329]
-position = Vector2(0, -2)
+visible = false
+position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_mumki")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

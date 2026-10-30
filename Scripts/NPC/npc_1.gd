@@ -5,12 +5,22 @@ extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var patrol_points: Array[Vector2] = []
+@export var greeting_lines: Array[String] = ["What am i doing? nothing, just looking around"]
+@export var interact_action: String = "ui_accept"
+@export var speaker_name: String = "Grandpa Rene"
+@onready var detection_area: Area2D = $DetectionArea
+
+var player_in_range: bool = false
+var is_conversing: bool = false
 
 var current_point_index: int = 0
 var waiting: bool = false
 var facing_direction: Vector2 = Vector2.DOWN
+var _player: Node2D = null
 
 func _ready() -> void:
+	detection_area.body_entered.connect(_on_body_entered)
+	detection_area.body_exited.connect(_on_body_exited)
 	patrol_points.append(global_position)
 	
 	for marker in $PatrolPoints.get_children():
@@ -65,3 +75,43 @@ func play_idle() -> void:
 		Vector2.LEFT: animated_sprite.play("idle_left")
 		Vector2.DOWN: animated_sprite.play("idle_down")
 		Vector2.UP: animated_sprite.play("idle_up")
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not player_in_range or is_conversing:
+		return
+
+	if event.is_action_pressed(interact_action):
+		get_viewport().set_input_as_handled()
+		_start_conversation()
+
+func _start_conversation() -> void:
+	is_conversing = true
+
+	_face_player()
+	DialogUI.say(greeting_lines, speaker_name)
+	await DialogUI.finished
+
+	is_conversing = false
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		player_in_range = true
+		_player = body
+
+func _on_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		player_in_range = false
+		_player = null
+
+func _face_player() -> void:
+	if _player == null:
+		return
+		
+	var to_player := _player.global_position - global_position
+	if abs(to_player.x) > abs(to_player.y):
+		facing_direction = Vector2.RIGHT if to_player.x > 0 else Vector2.LEFT
+	else:
+		facing_direction = Vector2.DOWN if to_player.y > 0 else Vector2.UP
+		
+	velocity = Vector2.ZERO
+	play_idle()

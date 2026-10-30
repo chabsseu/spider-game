@@ -18,7 +18,7 @@ signal hour_changed(hour: int)
 @export var color_night: Color = Color(0.18, 0.2, 0.4)
 @export var color_dawn: Color = Color(0.75, 0.6, 0.55)
 
-var time_of_day: float = 19.0 ## 0-24, starts at 8 AM
+var time_of_day: float = 8.0 ## 0-24, starts at 8 AM
 var is_night: bool = false
 
 @onready var canvas_modulate: CanvasModulate = get_node_or_null(canvas_modulate_path)

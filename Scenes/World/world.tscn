@@ -11,14 +11,15 @@
 [ext_resource type="Script" uid="uid://delictga36fxt" path="res://Scripts/web_spot_manager.gd" id="9_y0d6x"]
 [ext_resource type="PackedScene" uid="uid://ccns27ebcptr4" path="res://Scenes/World/web_spot.tscn" id="10_ugf0j"]
 [ext_resource type="Script" uid="uid://w5fyoqsnpr1g" path="res://Spiders/SpiderSpecies.gd" id="11_pvt60"]
-[ext_resource type="Resource" uid="uid://b21rx5escgdba" path="res://Spiders/Talaan.tres" id="13_7aaxd"]
+[ext_resource type="Texture2D" uid="uid://f74r2k3y7ldj" path="res://Assets/Spiders/Jumping_spider.png" id="12_hiquf"]
+[ext_resource type="Texture2D" uid="uid://cg1oc0nl4bmf5" path="res://Assets/Spiders/orb_weaver.png" id="13_7c7np"]
 [ext_resource type="PackedScene" uid="uid://c7lreop8xd413" path="res://Scenes/World/ContainerUI.tscn" id="13_vbhkl"]
 [ext_resource type="PackedScene" uid="uid://bxh8umic28wmh" path="res://Scenes/NPC/tradernpc.tscn" id="15_4pv6w"]
 [ext_resource type="Resource" uid="uid://dqu2kk5r00nyv" path="res://Spiders/Sili.tres" id="16_7aaxd"]
 [ext_resource type="PackedScene" uid="uid://31no8lp61qwa" path="res://Scenes/NPC/enemy_npc.tscn" id="16_dr8i3"]
 [ext_resource type="PackedScene" uid="uid://5e2r0xdldpj" path="res://Scenes/World/TransitionUI.tscn" id="17_7aaxd"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vadfg"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7aaxd"]
 texture = ExtResource("2_3rhlx")
 6:0/0 = 0
 7:0/0 = 0
@@ -95,7 +96,7 @@ texture = ExtResource("2_3rhlx")
 11:6/0 = 0
 12:6/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yp2ti"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hiquf"]
 texture = ExtResource("2_yp2ti")
 0:0/0 = 0
 1:0/0 = 0
@@ -634,7 +635,7 @@ texture = ExtResource("2_yp2ti")
 5:18/0 = 0
 5:18/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l1hd3"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7c7np"]
 texture = ExtResource("3_vadfg")
 25:0/0 = 0
 26:0/0 = 0
@@ -1146,9 +1147,51 @@ texture = ExtResource("3_vadfg")
 
 [sub_resource type="TileSet" id="TileSet_3rhlx"]
 physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_yp2ti")
-sources/0 = SubResource("TileSetAtlasSource_vadfg")
-sources/2 = SubResource("TileSetAtlasSource_l1hd3")
+sources/1 = SubResource("TileSetAtlasSource_hiquf")
+sources/0 = SubResource("TileSetAtlasSource_7aaxd")
+sources/2 = SubResource("TileSetAtlasSource_7c7np")
+
+[sub_resource type="Resource" id="Resource_xatfh"]
+script = ExtResource("11_pvt60")
+species_name = "Sili"
+difficulty = 0.7
+description = "Gagambang Sili"
+health = 100.0
+speed = 7.0
+strength = 5.0
+shield = 6.0
+crit_chance = 30.0
+evasion = 25.0
+icon = ExtResource("12_hiquf")
+metadata/_custom_type_script = "uid://w5fyoqsnpr1g"
+
+[sub_resource type="Resource" id="Resource_7ubof"]
+script = ExtResource("11_pvt60")
+species_name = "Sili"
+difficulty = 0.7
+description = "Gagambang Sili"
+health = 100.0
+speed = 7.0
+strength = 5.0
+shield = 6.0
+crit_chance = 30.0
+evasion = 25.0
+icon = ExtResource("12_hiquf")
+metadata/_custom_type_script = "uid://w5fyoqsnpr1g"
+
+[sub_resource type="Resource" id="Resource_6paci"]
+script = ExtResource("11_pvt60")
+species_name = "Talaan"
+difficulty = 0.7
+description = "Gagambang Tala"
+health = 100.0
+speed = 7.0
+strength = 5.0
+shield = 6.0
+crit_chance = 30.0
+evasion = 25.0
+icon = ExtResource("13_7c7np")
+metadata/_custom_type_script = "uid://w5fyoqsnpr1g"
 
 [node name="World" type="Node2D" unique_id=1080645393]
 script = ExtResource("1_l1hd3")
@@ -1210,11 +1253,12 @@ size_flags_horizontal = 8
 theme_override_fonts/font = ExtResource("7_fcotr")
 theme_override_font_sizes/font_size = 50
 script = ExtResource("7_7staa")
+metadata/_edit_use_anchors_ = true
 
 [node name="WebSpotManager" type="Node2D" parent="." unique_id=691535314]
 script = ExtResource("9_y0d6x")
 web_spot_scene = ExtResource("10_ugf0j")
-species_pool = Array[ExtResource("11_pvt60")]([ExtResource("16_7aaxd"), ExtResource("16_7aaxd"), ExtResource("13_7aaxd")])
+species_pool = Array[ExtResource("11_pvt60")]([SubResource("Resource_xatfh"), SubResource("Resource_7ubof"), SubResource("Resource_6paci")])
 
 [node name="ContainerUI" parent="." unique_id=1375906538 instance=ExtResource("13_vbhkl")]
 
