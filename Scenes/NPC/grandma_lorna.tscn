@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://fn76yo42tjti"]
+
+[ext_resource type="Script" uid="uid://cpmgq6t4f55ye" path="res://Scripts/NPC/parent_npc.gd" id="1_drd4o"]
+[ext_resource type="Texture2D" uid="uid://cou0gmx13adab" path="res://Assets/Townspeople/Townspeople.png" id="1_tgfym"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drd4o"]
+atlas = ExtResource("1_tgfym")
+region = Rect2(396, 312, 18, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inqe4"]
+atlas = ExtResource("1_tgfym")
+region = Rect2(396, 338, 18, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfd20"]
+atlas = ExtResource("1_tgfym")
+region = Rect2(396, 364, 18, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onbul"]
+atlas = ExtResource("1_tgfym")
+region = Rect2(396, 390, 18, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8r66p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drd4o")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inqe4")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfd20")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onbul")
+}],
+"loop": true,
+"name": &"idle_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lftec"]
+radius = 4.0
+height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_smafw"]
+radius = 11.0
+
+[node name="Grandma_lorna" type="CharacterBody2D" unique_id=1312907544]
+script = ExtResource("1_drd4o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1072977039]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_8r66p")
+animation = &"idle_down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1394406473]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_lftec")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=456033019]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1640915645]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_smafw")

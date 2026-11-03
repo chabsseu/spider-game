@@ -69,12 +69,12 @@ func _pause_then_advance() -> void:
 # 		Vector2.DOWN: animated_sprite.play("walk_down")
 # 		Vector2.UP: animated_sprite.play("walk_up")
 
-func play_idle() -> void:
-	match facing_direction:
-		Vector2.RIGHT: animated_sprite.play("idle_right")
-		Vector2.LEFT: animated_sprite.play("idle_left")
-		Vector2.DOWN: animated_sprite.play("idle_down")
-		Vector2.UP: animated_sprite.play("idle_up")
+# func play_idle() -> void:
+# 	match facing_direction:
+# 		Vector2.RIGHT: animated_sprite.play("idle_right")
+# 		Vector2.LEFT: animated_sprite.play("idle_left")
+# 		Vector2.DOWN: animated_sprite.play("idle_down")
+# 		Vector2.UP: animated_sprite.play("idle_up")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not player_in_range or is_conversing:
@@ -114,4 +114,4 @@ func _face_player() -> void:
 		facing_direction = Vector2.DOWN if to_player.y > 0 else Vector2.UP
 		
 	velocity = Vector2.ZERO
-	play_idle()
+	# play_idle()

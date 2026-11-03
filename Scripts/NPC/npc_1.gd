@@ -5,9 +5,9 @@ extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var patrol_points: Array[Vector2] = []
-@export var greeting_lines: Array[String] = ["What am i doing? nothing, just looking around"]
+@export var greeting_lines: Array[String] = [""]
 @export var interact_action: String = "ui_accept"
-@export var speaker_name: String = "Grandpa Rene"
+@export var speaker_name: String = ""
 @onready var detection_area: Area2D = $DetectionArea
 
 var player_in_range: bool = false

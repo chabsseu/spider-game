@@ -18,6 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://cky2yildgf5ao" path="res://Scenes/NPC/vendor_npc.tscn" id="13_nqi3u"]
 [ext_resource type="PackedScene" uid="uid://cipj2vqmkgmau" path="res://Scenes/NPC/lumberjack_npc.tscn" id="14_2oev7"]
 [ext_resource type="Resource" uid="uid://dqu2kk5r00nyv" path="res://Spiders/Sili.tres" id="14_6mf0v"]
+[ext_resource type="PackedScene" uid="uid://biqag4u4a1l0g" path="res://Scenes/NPC/kid_2_npc.tscn" id="15_mlqgt"]
+[ext_resource type="PackedScene" uid="uid://fn76yo42tjti" path="res://Scenes/NPC/grandma_lorna.tscn" id="20_bhn75"]
+[ext_resource type="Script" uid="uid://daajym0pkeqya" path="res://Scripts/NPC/npc_1.gd" id="21_1222o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_be5to"]
 texture = ExtResource("1_wi7gq")
@@ -43,7 +46,9 @@ texture = ExtResource("1_wi7gq")
 12:1/0 = 0
 0:2/0 = 0
 1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2.6986008, -2.3503933, 2.6986008, -2.3503933, 3.3950138, 8, -2.8727036, 8)
 2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.3950138, -8, 8, -8, 8, 8, 3.220911, 8)
 3:2/0 = 0
 4:2/0 = 0
 5:2/0 = 0
@@ -58,6 +63,7 @@ texture = ExtResource("1_wi7gq")
 1:3/0 = 0
 2:3/0 = 0
 4:3/0 = 0
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -2.1762905, -2.6986008, -2.1762905, -2.524496, 8, -8, 8)
 6:3/0 = 0
 7:3/0 = 0
 8:3/0 = 0
@@ -66,10 +72,12 @@ texture = ExtResource("1_wi7gq")
 11:3/0 = 0
 12:3/0 = 0
 0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 1.1316719, 8, 1.1316719, 8, 8, -8, 8)
 1:4/0 = 0
 2:4/0 = 0
 3:4/0 = 0
 4:4/0 = 0
+4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -2.6986008, -8, -2.524496, 8, -8, 8)
 6:4/0 = 0
 7:4/0 = 0
 8:4/0 = 0
@@ -80,6 +88,7 @@ texture = ExtResource("1_wi7gq")
 0:5/0 = 0
 1:5/0 = 0
 2:5/0 = 0
+2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 1.1316719, 8, 1.1316719, 8, 8, -8, 8)
 3:5/0 = 0
 6:5/0 = 0
 7:5/0 = 0
@@ -1094,14 +1103,21 @@ texture = ExtResource("3_g50jq")
 69:8/0 = 0
 70:8/0 = 0
 8:9/0 = 0
+8:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(4.78784, 3.7432194, 8, 3.0468082, 8, 8, 4.78784, 8)
 9:9/0 = 0
+9:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 3.7432194, 8, -0.43525696, 8, 8, -8, 8)
 10:9/0 = 0
+10:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.60936165, 8, -4.613735, 8, 8, -8, 8)
 11:9/0 = 0
+11:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 3.220911, -8, 3.7432194, 8, -8, 8)
 12:9/0 = 0
 13:9/0 = 0
 14:9/0 = 0
+14:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.3101482, -0.08705139, 8, -8, 8, 8, -8, 8)
 15:9/0 = 0
+15:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 16:9/0 = 0
+16:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, 0.43525887, 8, 8, -8, 8)
 17:9/0 = 0
 18:9/0 = 0
 18:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(2.8727036, -8, 8, -8, 8, 8, 3.5691166, 8)
@@ -1257,6 +1273,8 @@ z_index = 1
 position = Vector2(-150, 78)
 speed = 50.0
 wait_time = 2.0
+greeting_lines = Array[String](["What am i doing? nothing, just looking around"])
+speaker_name = "Old Man Rene"
 
 [node name="PatrolPoints" type="Node2D" parent="Node/npc1" unique_id=72743735]
 position = Vector2(-2, -22)
@@ -1271,7 +1289,7 @@ position = Vector2(115, 24)
 z_index = 1
 position = Vector2(172, 268)
 speed = 50.0
-wait_time = 2.0
+wait_time = 1.0
 
 [node name="PatrolPoints" type="Node2D" parent="Node/Kid_npc" unique_id=233827668]
 position = Vector2(-2, -22)
@@ -1328,7 +1346,39 @@ position = Vector2(68, 17)
 [node name="Marker2D7" type="Marker2D" parent="Node/Lumberjack_npc/PatrolPoints" unique_id=1351294593]
 position = Vector2(2, 21)
 
-[node name="Tradernpc" parent="." unique_id=2015198102 instance=ExtResource("11_iib8a")]
+[node name="Kid2_npc" parent="Node" unique_id=309728905 instance=ExtResource("15_mlqgt")]
+position = Vector2(141, 266)
+greeting_lines = Array[String](["Lets play lota..."])
+
+[node name="PatrolPoints" type="Node2D" parent="Node/Kid2_npc" unique_id=2054977196]
+position = Vector2(-2, -22)
+
+[node name="Marker2D" type="Marker2D" parent="Node/Kid2_npc/PatrolPoints" unique_id=1098824893]
+position = Vector2(2, 21)
+
+[node name="Marker2D2" type="Marker2D" parent="Node/Kid2_npc/PatrolPoints" unique_id=1425732632]
+position = Vector2(33, 23)
+
+[node name="Marker2D3" type="Marker2D" parent="Node/Kid2_npc/PatrolPoints" unique_id=2047200392]
+position = Vector2(71, 23)
+
+[node name="Marker2D4" type="Marker2D" parent="Node/Kid2_npc/PatrolPoints" unique_id=1938860874]
+position = Vector2(70, 51)
+
+[node name="Marker2D5" type="Marker2D" parent="Node/Kid2_npc/PatrolPoints" unique_id=158954567]
+position = Vector2(31, 50)
+
+[node name="Tradernpc" parent="Node" unique_id=2015198102 instance=ExtResource("11_iib8a")]
 z_index = 1
 position = Vector2(64, 57)
 species_for_sale = Array[ExtResource("12_ba16m")]([ExtResource("13_gbnj1"), ExtResource("14_6mf0v")])
+
+[node name="Grandma_lorna" parent="Node" unique_id=1312907544 instance=ExtResource("20_bhn75")]
+z_index = 1
+position = Vector2(-21, -22)
+script = ExtResource("21_1222o")
+greeting_lines = Array[String](["Early to bed and early to rise makes you healthy, wealthy, and wise."])
+speaker_name = "Old Lady Lorna"
+
+[node name="PatrolPoints" type="Node2D" parent="Node/Grandma_lorna" unique_id=1173022675]
+position = Vector2(-2, -22)
