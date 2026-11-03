@@ -2,11 +2,25 @@
 
 [ext_resource type="Script" uid="uid://ch10tydqla2yp" path="res://Scripts/NPC/enemy_npc.gd" id="1_xqfyx"]
 [ext_resource type="Texture2D" uid="uid://cou0gmx13adab" path="res://Assets/Townspeople/Townspeople.png" id="1_ylao8"]
-[ext_resource type="Resource" uid="uid://bodd70sxmxlr8" path="res://Spiders/Jumping_Spider.tres" id="2_oxbw1"]
+
+[sub_resource type="Resource" id="Resource_xqfyx"]
+metadata/__load_path__ = "res://Spiders/Jumping_Spider.tres"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xqfyx"]
 atlas = ExtResource("1_ylao8")
 region = Rect2(270, 208, 18, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxbw1"]
+atlas = ExtResource("1_ylao8")
+region = Rect2(270, 234, 18, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4up3"]
+atlas = ExtResource("1_ylao8")
+region = Rect2(270, 260, 18, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y61o8"]
+atlas = ExtResource("1_ylao8")
+region = Rect2(270, 286, 18, 26)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0hp1c"]
 animations = [{
@@ -15,7 +29,31 @@ animations = [{
 "texture": SubResource("AtlasTexture_xqfyx")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxbw1")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4up3")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y61o8")
+}],
+"loop": true,
+"name": &"idle_up",
 "speed": 5.0
 }]
 
@@ -29,11 +67,11 @@ radius = 13.0
 [node name="EnemyNPC" type="CharacterBody2D" unique_id=243201095 groups=["npc"]]
 script = ExtResource("1_xqfyx")
 npc_id = "1"
-opponent_species = ExtResource("2_oxbw1")
+opponent_species = SubResource("Resource_xqfyx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=68794018]
 sprite_frames = SubResource("SpriteFrames_0hp1c")
-animation = &"Idle"
+animation = &"idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=581454276]
 position = Vector2(0, 2)

@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://biqag4u4a1l0g" path="res://Scenes/NPC/kid_2_npc.tscn" id="15_mlqgt"]
 [ext_resource type="PackedScene" uid="uid://fn76yo42tjti" path="res://Scenes/NPC/grandma_lorna.tscn" id="20_bhn75"]
 [ext_resource type="Script" uid="uid://daajym0pkeqya" path="res://Scripts/NPC/npc_1.gd" id="21_1222o"]
+[ext_resource type="PackedScene" uid="uid://31no8lp61qwa" path="res://Scenes/NPC/enemy_npc.tscn" id="22_qgnlv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_be5to"]
 texture = ExtResource("1_wi7gq")
@@ -1266,9 +1267,9 @@ visible = false
 z_index = 1
 position = Vector2(28, -124)
 
-[node name="Node" type="Node" parent="." unique_id=40695654]
+[node name="Npc Node" type="Node" parent="." unique_id=40695654]
 
-[node name="npc1" parent="Node" unique_id=1295285643 instance=ExtResource("9_y5u6n")]
+[node name="npc1" parent="Npc Node" unique_id=1295285643 instance=ExtResource("9_y5u6n")]
 z_index = 1
 position = Vector2(-150, 78)
 speed = 50.0
@@ -1276,109 +1277,112 @@ wait_time = 2.0
 greeting_lines = Array[String](["What am i doing? nothing, just looking around"])
 speaker_name = "Old Man Rene"
 
-[node name="PatrolPoints" type="Node2D" parent="Node/npc1" unique_id=72743735]
+[node name="PatrolPoints" type="Node2D" parent="Npc Node/npc1" unique_id=72743735]
 position = Vector2(-2, -22)
 
-[node name="Marker2D" type="Marker2D" parent="Node/npc1/PatrolPoints" unique_id=2077097152]
+[node name="Marker2D" type="Marker2D" parent="Npc Node/npc1/PatrolPoints" unique_id=2077097152]
 position = Vector2(2, 21)
 
-[node name="Marker2D2" type="Marker2D" parent="Node/npc1/PatrolPoints" unique_id=546887830]
+[node name="Marker2D2" type="Marker2D" parent="Npc Node/npc1/PatrolPoints" unique_id=546887830]
 position = Vector2(115, 24)
 
-[node name="Kid_npc" parent="Node" unique_id=1619399057 instance=ExtResource("11_gbnj1")]
+[node name="Kid_npc" parent="Npc Node" unique_id=1619399057 instance=ExtResource("11_gbnj1")]
 z_index = 1
 position = Vector2(172, 268)
 speed = 50.0
 wait_time = 1.0
 
-[node name="PatrolPoints" type="Node2D" parent="Node/Kid_npc" unique_id=233827668]
+[node name="PatrolPoints" type="Node2D" parent="Npc Node/Kid_npc" unique_id=233827668]
 position = Vector2(-2, -22)
 
-[node name="Marker2D" type="Marker2D" parent="Node/Kid_npc/PatrolPoints" unique_id=1392723586]
+[node name="Marker2D" type="Marker2D" parent="Npc Node/Kid_npc/PatrolPoints" unique_id=1392723586]
 position = Vector2(2, 21)
 
-[node name="Marker2D2" type="Marker2D" parent="Node/Kid_npc/PatrolPoints" unique_id=912675710]
+[node name="Marker2D2" type="Marker2D" parent="Npc Node/Kid_npc/PatrolPoints" unique_id=912675710]
 position = Vector2(40, 21)
 
-[node name="Marker2D3" type="Marker2D" parent="Node/Kid_npc/PatrolPoints" unique_id=1167464404]
+[node name="Marker2D3" type="Marker2D" parent="Npc Node/Kid_npc/PatrolPoints" unique_id=1167464404]
 position = Vector2(39, 49)
 
-[node name="Marker2D4" type="Marker2D" parent="Node/Kid_npc/PatrolPoints" unique_id=1831521079]
+[node name="Marker2D4" type="Marker2D" parent="Npc Node/Kid_npc/PatrolPoints" unique_id=1831521079]
 position = Vector2(0, 48)
 
-[node name="Parent_npc" parent="Node" unique_id=1203574701 instance=ExtResource("12_6mf0v")]
+[node name="Parent_npc" parent="Npc Node" unique_id=1203574701 instance=ExtResource("12_6mf0v")]
 z_index = 1
 position = Vector2(217, 226)
 
-[node name="Vendor_npc" parent="Node" unique_id=537197415 instance=ExtResource("13_nqi3u")]
+[node name="Vendor_npc" parent="Npc Node" unique_id=537197415 instance=ExtResource("13_nqi3u")]
 position = Vector2(164, 143)
 greeting_lines = Array[String](["Ice cream! Ice cgream! Delicious ice cream...."])
 speaker_name = "Old man Roy"
 
-[node name="Lumberjack_npc" parent="Node" unique_id=1128608201 instance=ExtResource("14_2oev7")]
+[node name="Lumberjack_npc" parent="Npc Node" unique_id=1128608201 instance=ExtResource("14_2oev7")]
 z_index = 1
 position = Vector2(-145, 161)
 speed = 50.0
 greeting_lines = Array[String](["Just gathering wood, This is my work...."])
 speaker_name = "Lumberjack May"
 
-[node name="PatrolPoints" type="Node2D" parent="Node/Lumberjack_npc" unique_id=1216181483]
+[node name="PatrolPoints" type="Node2D" parent="Npc Node/Lumberjack_npc" unique_id=1216181483]
 position = Vector2(-2, -22)
 
-[node name="Marker2D" type="Marker2D" parent="Node/Lumberjack_npc/PatrolPoints" unique_id=489460439]
+[node name="Marker2D" type="Marker2D" parent="Npc Node/Lumberjack_npc/PatrolPoints" unique_id=489460439]
 position = Vector2(2, 21)
 
-[node name="Marker2D2" type="Marker2D" parent="Node/Lumberjack_npc/PatrolPoints" unique_id=20399079]
+[node name="Marker2D2" type="Marker2D" parent="Npc Node/Lumberjack_npc/PatrolPoints" unique_id=20399079]
 position = Vector2(68, 17)
 
-[node name="Marker2D3" type="Marker2D" parent="Node/Lumberjack_npc/PatrolPoints" unique_id=916325836]
+[node name="Marker2D3" type="Marker2D" parent="Npc Node/Lumberjack_npc/PatrolPoints" unique_id=916325836]
 position = Vector2(67, 54)
 
-[node name="Marker2D4" type="Marker2D" parent="Node/Lumberjack_npc/PatrolPoints" unique_id=1192502588]
+[node name="Marker2D4" type="Marker2D" parent="Npc Node/Lumberjack_npc/PatrolPoints" unique_id=1192502588]
 position = Vector2(24, 54)
 
-[node name="Marker2D5" type="Marker2D" parent="Node/Lumberjack_npc/PatrolPoints" unique_id=1436915531]
+[node name="Marker2D5" type="Marker2D" parent="Npc Node/Lumberjack_npc/PatrolPoints" unique_id=1436915531]
 position = Vector2(67, 54)
 
-[node name="Marker2D6" type="Marker2D" parent="Node/Lumberjack_npc/PatrolPoints" unique_id=1090698612]
+[node name="Marker2D6" type="Marker2D" parent="Npc Node/Lumberjack_npc/PatrolPoints" unique_id=1090698612]
 position = Vector2(68, 17)
 
-[node name="Marker2D7" type="Marker2D" parent="Node/Lumberjack_npc/PatrolPoints" unique_id=1351294593]
+[node name="Marker2D7" type="Marker2D" parent="Npc Node/Lumberjack_npc/PatrolPoints" unique_id=1351294593]
 position = Vector2(2, 21)
 
-[node name="Kid2_npc" parent="Node" unique_id=309728905 instance=ExtResource("15_mlqgt")]
+[node name="Kid2_npc" parent="Npc Node" unique_id=309728905 instance=ExtResource("15_mlqgt")]
 position = Vector2(141, 266)
 greeting_lines = Array[String](["Lets play lota..."])
 
-[node name="PatrolPoints" type="Node2D" parent="Node/Kid2_npc" unique_id=2054977196]
+[node name="PatrolPoints" type="Node2D" parent="Npc Node/Kid2_npc" unique_id=2054977196]
 position = Vector2(-2, -22)
 
-[node name="Marker2D" type="Marker2D" parent="Node/Kid2_npc/PatrolPoints" unique_id=1098824893]
+[node name="Marker2D" type="Marker2D" parent="Npc Node/Kid2_npc/PatrolPoints" unique_id=1098824893]
 position = Vector2(2, 21)
 
-[node name="Marker2D2" type="Marker2D" parent="Node/Kid2_npc/PatrolPoints" unique_id=1425732632]
+[node name="Marker2D2" type="Marker2D" parent="Npc Node/Kid2_npc/PatrolPoints" unique_id=1425732632]
 position = Vector2(33, 23)
 
-[node name="Marker2D3" type="Marker2D" parent="Node/Kid2_npc/PatrolPoints" unique_id=2047200392]
+[node name="Marker2D3" type="Marker2D" parent="Npc Node/Kid2_npc/PatrolPoints" unique_id=2047200392]
 position = Vector2(71, 23)
 
-[node name="Marker2D4" type="Marker2D" parent="Node/Kid2_npc/PatrolPoints" unique_id=1938860874]
+[node name="Marker2D4" type="Marker2D" parent="Npc Node/Kid2_npc/PatrolPoints" unique_id=1938860874]
 position = Vector2(70, 51)
 
-[node name="Marker2D5" type="Marker2D" parent="Node/Kid2_npc/PatrolPoints" unique_id=158954567]
+[node name="Marker2D5" type="Marker2D" parent="Npc Node/Kid2_npc/PatrolPoints" unique_id=158954567]
 position = Vector2(31, 50)
 
-[node name="Tradernpc" parent="Node" unique_id=2015198102 instance=ExtResource("11_iib8a")]
+[node name="Tradernpc" parent="Npc Node" unique_id=2015198102 instance=ExtResource("11_iib8a")]
 z_index = 1
 position = Vector2(64, 57)
 species_for_sale = Array[ExtResource("12_ba16m")]([ExtResource("13_gbnj1"), ExtResource("14_6mf0v")])
 
-[node name="Grandma_lorna" parent="Node" unique_id=1312907544 instance=ExtResource("20_bhn75")]
+[node name="Grandma_lorna" parent="Npc Node" unique_id=1312907544 instance=ExtResource("20_bhn75")]
 z_index = 1
 position = Vector2(-21, -22)
 script = ExtResource("21_1222o")
 greeting_lines = Array[String](["Early to bed and early to rise makes you healthy, wealthy, and wise."])
 speaker_name = "Old Lady Lorna"
 
-[node name="PatrolPoints" type="Node2D" parent="Node/Grandma_lorna" unique_id=1173022675]
+[node name="PatrolPoints" type="Node2D" parent="Npc Node/Grandma_lorna" unique_id=1173022675]
 position = Vector2(-2, -22)
+
+[node name="EnemyNPC" parent="Npc Node" unique_id=243201095 instance=ExtResource("22_qgnlv")]
+position = Vector2(299, 211)
