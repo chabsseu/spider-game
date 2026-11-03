@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://4c0lfuv2n02y"]
+
+[ext_resource type="Texture2D" uid="uid://cou0gmx13adab" path="res://Assets/Townspeople/Townspeople.png" id="1_71xi2"]
+[ext_resource type="Script" uid="uid://cpmgq6t4f55ye" path="res://Scripts/NPC/parent_npc.gd" id="1_t0uo7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0uo7"]
+atlas = ExtResource("1_71xi2")
+region = Rect2(396, 208, 18, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wddk"]
+atlas = ExtResource("1_71xi2")
+region = Rect2(396, 234, 18, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dan1k"]
+atlas = ExtResource("1_71xi2")
+region = Rect2(396, 260, 18, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mrqp"]
+atlas = ExtResource("1_71xi2")
+region = Rect2(396, 286, 18, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_24hob"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0uo7")
+}],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wddk")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dan1k")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mrqp")
+}],
+"loop": true,
+"name": &"idle_up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vb32q"]
+radius = 6.0
+height = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kgtxf"]
+radius = 11.0
+
+[node name="Parent_npc" type="CharacterBody2D" unique_id=1203574701]
+script = ExtResource("1_t0uo7")
+greeting_lines = Array[String](["Be careful lota!"])
+speaker_name = "Josel"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1200807593]
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_24hob")
+animation = &"idle_down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1467316055]
+position = Vector2(0, -10)
+shape = SubResource("CapsuleShape2D_vb32q")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=374390098]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1419402611]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_kgtxf")
