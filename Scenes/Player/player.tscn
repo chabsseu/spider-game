@@ -164,6 +164,7 @@ radius = 5.0
 height = 16.0
 
 [node name="Player" type="CharacterBody2D" unique_id=501030347]
+z_index = 1
 script = ExtResource("1_a3d8c")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1731931177 node_paths=PackedStringArray("target")]
@@ -174,7 +175,7 @@ target = NodePath("..")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2121445012]
 position = Vector2(1, -12)
 sprite_frames = SubResource("SpriteFrames_r5xpd")
-animation = &"idle_down"
+animation = &"walk_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=154667457]
 position = Vector2(1, -8)

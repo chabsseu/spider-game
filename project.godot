@@ -29,11 +29,13 @@ NamingUi="*uid://jgarhtpqty2a"
 DialogUI="*uid://cdhfudnysrqjm"
 TransitionUi="*uid://5e2r0xdldpj"
 SpiderTooltip="*res://Scenes/World/SpiderTooltip.tscn"
+GameManager="*uid://cabtyxwqhw2os"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/stretch/mode="canvas_items"
 
 [global_group]
 

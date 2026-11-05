@@ -1,8 +1,9 @@
 extends CanvasLayer
 signal transition_finished
 
-@onready var fade_rect: ColorRect = $FadeRect
-@onready var circle_rect: ColorRect = $CircleRect
+# Update these paths to point through your new Control node!
+@onready var fade_rect: ColorRect = $Control/FadeRect
+@onready var circle_rect: ColorRect = $Control/CircleRect
 
 var _circle_material: ShaderMaterial
 var _max_radius: float = 0.0
@@ -14,15 +15,13 @@ func _ready() -> void:
 	fade_rect.modulate.a = 0.0
 	fade_rect.hide()
 
-	# Build the shader material fresh in code — more reliable than
-	# depending on a pre-wired .tres/.tscn reference.
 	var shader: Shader = load("res://Scripts/Global/circle_wipe.gdshader")
 	if not shader:
 		push_error("TransitionUI could not load circle_wipe.gdshader — check the path.")
 	_circle_material = ShaderMaterial.new()
 	_circle_material.shader = shader
 	circle_rect.material = _circle_material
-	circle_rect.color = Color(1, 1, 1, 1) # irrelevant once the shader overrides COLOR
+	circle_rect.color = Color(1, 1, 1, 1)
 	circle_rect.hide()
 
 	var viewport_size := get_viewport().get_visible_rect().size
