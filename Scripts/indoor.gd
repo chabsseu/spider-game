@@ -1,3 +1,4 @@
+# Inddor spawn
 extends Node2D
 
 @export_file("*.tscn") var overworld_scene_path: String = "res://Scenes/Map/blk_5.tscn"

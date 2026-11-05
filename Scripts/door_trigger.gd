@@ -1,3 +1,4 @@
+#Outdoor spawn
 extends Area2D
 
 @export_file("*.tscn") var indoor_scene_path: String = "res://Scenes/World/indoor.tscn"
