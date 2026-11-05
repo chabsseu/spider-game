@@ -166,9 +166,10 @@ height = 16.0
 [node name="Player" type="CharacterBody2D" unique_id=501030347]
 script = ExtResource("1_a3d8c")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1731931177]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1731931177 node_paths=PackedStringArray("target")]
 zoom = Vector2(2.5, 2.5)
 script = ExtResource("2_xpcdj")
+target = NodePath("..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2121445012]
 position = Vector2(1, -12)

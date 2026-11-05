@@ -8,13 +8,20 @@ func _ready() -> void:
 	Daynightcycle.canvas_modulate = canvas_modulate
 	CatchMinigameUI.camera = camera
 	_restore_world_state()
+	
+	# 1. Calculate exact pixel boundaries of the TileMap
 	var used_rect: Rect2i = tilemap.get_used_rect()
 	var tile_size: Vector2i = tilemap.tile_set.tile_size
+	var map_pos: Vector2 = tilemap.global_position
 
-	camera.limit_left = used_rect.position.x * tile_size.x
-	camera.limit_top = used_rect.position.y * tile_size.y
-	camera.limit_right = used_rect.end.x * tile_size.x
-	camera.limit_bottom = used_rect.end.y * tile_size.y
+	var map_left = map_pos.x + (used_rect.position.x * tile_size.x)
+	var map_top = map_pos.y + (used_rect.position.y * tile_size.y)
+	var map_right = map_pos.x + (used_rect.end.x * tile_size.x)
+	var map_bottom = map_pos.y + (used_rect.end.y * tile_size.y)
+
+	# 2. Pass these bounds to the smooth camera script
+	if camera.has_method("set_map_bounds"):
+		camera.set_map_bounds(Vector2(map_left, map_top), Vector2(map_right, map_bottom))
 
 func _restore_world_state() -> void:
 	# Hide or disable defeated opponents when re-entering world
