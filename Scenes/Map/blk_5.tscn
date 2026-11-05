@@ -20,6 +20,7 @@
 [ext_resource type="Resource" uid="uid://dqu2kk5r00nyv" path="res://Spiders/Sili.tres" id="14_6mf0v"]
 [ext_resource type="PackedScene" uid="uid://biqag4u4a1l0g" path="res://Scenes/NPC/kid_2_npc.tscn" id="15_mlqgt"]
 [ext_resource type="PackedScene" uid="uid://fn76yo42tjti" path="res://Scenes/NPC/grandma_lorna.tscn" id="20_bhn75"]
+[ext_resource type="PackedScene" uid="uid://df1a4f84itmdc" path="res://Scenes/NPC/grandma_anne.tscn" id="22_jl7l1"]
 [ext_resource type="PackedScene" uid="uid://31no8lp61qwa" path="res://Scenes/NPC/enemy_npc.tscn" id="22_qgnlv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_be5to"]
@@ -1391,3 +1392,25 @@ position = Vector2(-2, -22)
 
 [node name="EnemyNPC" parent="Npc Node" unique_id=243201095 instance=ExtResource("22_qgnlv")]
 position = Vector2(299, 211)
+
+[node name="Grandma_Anne" parent="Npc Node" unique_id=542075413 instance=ExtResource("22_jl7l1")]
+position = Vector2(859, 51)
+speed = 40.0
+wait_time = 2.0
+greeting_lines = Array[String](["You should get more sleep young man"])
+speaker_name = "Old Lady Anne"
+
+[node name="PatrolPoints" type="Node2D" parent="Npc Node/Grandma_Anne" unique_id=1689509510]
+position = Vector2(-2, -22)
+
+[node name="Marker2D" type="Marker2D" parent="Npc Node/Grandma_Anne/PatrolPoints" unique_id=630395130]
+position = Vector2(2, 21)
+
+[node name="Marker2D2" type="Marker2D" parent="Npc Node/Grandma_Anne/PatrolPoints" unique_id=1250922516]
+position = Vector2(4, 173)
+
+[node name="Marker2D3" type="Marker2D" parent="Npc Node/Grandma_Anne/PatrolPoints" unique_id=1056103946]
+position = Vector2(2, 21)
+
+[node name="Marker2D4" type="Marker2D" parent="Npc Node/Grandma_Anne/PatrolPoints" unique_id=2044427730]
+position = Vector2(144, 17)
