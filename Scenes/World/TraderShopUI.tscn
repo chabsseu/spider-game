@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dmxolrkl16a5u" path="res://Scripts/trader_shop_ui.gd" id="1_eh03r"]
 
 [node name="TraderShopUI" type="CanvasLayer" unique_id=1517897542]
+process_mode = 3
 script = ExtResource("1_eh03r")
 
 [node name="Panel" type="Control" parent="." unique_id=427267686]

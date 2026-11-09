@@ -21,6 +21,9 @@
 [ext_resource type="PackedScene" uid="uid://fn76yo42tjti" path="res://Scenes/NPC/grandma_lorna.tscn" id="20_bhn75"]
 [ext_resource type="PackedScene" uid="uid://df1a4f84itmdc" path="res://Scenes/NPC/grandma_anne.tscn" id="22_jl7l1"]
 [ext_resource type="PackedScene" uid="uid://31no8lp61qwa" path="res://Scenes/NPC/enemy_npc.tscn" id="22_qgnlv"]
+[ext_resource type="PackedScene" uid="uid://ccns27ebcptr4" path="res://Scenes/World/web_spot.tscn" id="23_rphan"]
+[ext_resource type="Script" uid="uid://delictga36fxt" path="res://Scripts/web_spot_manager.gd" id="24_cquw4"]
+[ext_resource type="PackedScene" uid="uid://cho6g003ge8iy" path="res://Scenes/World/catch_minigame_ui.tscn" id="24_la5uh"]
 [ext_resource type="Script" uid="uid://bihdn7kg8rdvd" path="res://Scripts/door_trigger.gd" id="24_rphan"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rphan"]
@@ -1950,8 +1953,8 @@ size = Vector2(16, 7)
 
 [node name="BLK5" type="Node2D" unique_id=1627189944]
 script = ExtResource("1_mqp35")
-metadata/_edit_vertical_guides_ = [970.0]
-metadata/_edit_horizontal_guides_ = [310.0]
+metadata/_edit_vertical_guides_ = [986.0]
+metadata/_edit_horizontal_guides_ = [322.0]
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1229081965]
 position = Vector2(787, 385)
@@ -2089,7 +2092,7 @@ position = Vector2(31, 50)
 
 [node name="Tradernpc" parent="Npc Node" unique_id=2015198102 instance=ExtResource("11_iib8a")]
 z_index = 1
-position = Vector2(1007, 490)
+position = Vector2(1099, 493)
 species_for_sale = Array[ExtResource("12_ba16m")]([ExtResource("13_gbnj1"), ExtResource("14_6mf0v")])
 
 [node name="Grandma_lorna" parent="Npc Node" unique_id=1312907544 instance=ExtResource("20_bhn75")]
@@ -2103,6 +2106,7 @@ position = Vector2(-2, -22)
 
 [node name="EnemyNPC" parent="Npc Node" unique_id=243201095 instance=ExtResource("22_qgnlv")]
 position = Vector2(1236, 646)
+opponent_species = ExtResource("13_gbnj1")
 
 [node name="Grandma_Anne" parent="Npc Node" unique_id=542075413 instance=ExtResource("22_jl7l1")]
 position = Vector2(1807, 483)
@@ -2217,5 +2221,13 @@ indoor_scene_path = "uid://c04b56lb8ffbf"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door Trigger/Coop" unique_id=81367551]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_012el")
+
+[node name="CatchMinigameUI" parent="." unique_id=1888968753 instance=ExtResource("24_la5uh")]
+
+[node name="WebSpotManager" type="Node2D" parent="." unique_id=2077353790]
+script = ExtResource("24_cquw4")
+web_spot_scene = ExtResource("23_rphan")
+spawn_area = Rect2(700, 600, 700, 600)
+species_pool = Array[ExtResource("12_ba16m")]([ExtResource("13_gbnj1"), ExtResource("13_gbnj1"), ExtResource("14_6mf0v")])
 
 [connection signal="body_entered" from="Door Trigger/PlayerHouse" to="." method="_on_player_house_body_entered"]

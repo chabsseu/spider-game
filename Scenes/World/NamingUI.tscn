@@ -66,3 +66,5 @@ offset_right = 196.0
 offset_bottom = 122.0
 theme_override_fonts/font = ExtResource("2_jintb")
 text = "Skip"
+
+[connection signal="pressed" from="Panel/ConfirmButton" to="." method="_on_confirm_button_pressed"]
