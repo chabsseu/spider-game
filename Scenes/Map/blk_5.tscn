@@ -1942,6 +1942,12 @@ size = Vector2(20, 12)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmopm"]
 size = Vector2(20, 8.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ue5q8"]
+size = Vector2(20, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_012el"]
+size = Vector2(16, 7)
+
 [node name="BLK5" type="Node2D" unique_id=1627189944]
 script = ExtResource("1_mqp35")
 metadata/_edit_vertical_guides_ = [970.0]
@@ -2191,5 +2197,25 @@ indoor_scene_path = "uid://csghjdrjcumb7"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door Trigger/Church" unique_id=1041945876]
 position = Vector2(1, -4.25)
 shape = SubResource("RectangleShape2D_nmopm")
+
+[node name="Grandma_Anne\'sHouse" type="Area2D" parent="Door Trigger" unique_id=910519617]
+z_index = 1
+position = Vector2(1831, 450)
+script = ExtResource("24_rphan")
+indoor_scene_path = "uid://b1mfq6lde3k87"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door Trigger/Grandma_Anne\'sHouse" unique_id=466284459]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_ue5q8")
+
+[node name="Coop" type="Area2D" parent="Door Trigger" unique_id=597835805]
+z_index = 1
+position = Vector2(1895, 594)
+script = ExtResource("24_rphan")
+indoor_scene_path = "uid://c04b56lb8ffbf"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door Trigger/Coop" unique_id=81367551]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_012el")
 
 [connection signal="body_entered" from="Door Trigger/PlayerHouse" to="." method="_on_player_house_body_entered"]

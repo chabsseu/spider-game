@@ -2,14 +2,14 @@
 extends Node2D
 
 @export_file("*.tscn") var overworld_scene_path: String = "res://Scenes/Map/blk_5.tscn"
-@export var indoor_spawn_position: Vector2 = Vector2(0, 0) # Inside door coordinate
+@export var indoor_spawn_position: Vector2 = Vector2(0, 0) #indoor spawn
 
 func _ready() -> void:
-	# If we have a saved player instance from the GameManager, add them to this room!
+	#saved player instance from the GameManager, add them to this room!
 	if GameManager.player_instance:
-		# Add player to the scene tree
+		#Add player to the scene tree
 		add_child(GameManager.player_instance)
-		# Position them at the indoor entrance
+		#Position  at the indoor entrance
 		GameManager.player_instance.global_position = indoor_spawn_position
 
 func _on_exit_door_body_entered(body: Node2D) -> void:
