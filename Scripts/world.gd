@@ -25,7 +25,7 @@ func _ready() -> void:
 	if not player:
 		player = PLAYER_SCENE.instantiate()
 		add_child(player)
-		player.global_position = Vector2(28, -127) # Default spawn point
+		player.global_position = Vector2(970, 305) # Default spawn point
 	else:
 		if player.get_parent() != self:
 			add_child(player)

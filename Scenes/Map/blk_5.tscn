@@ -1919,15 +1919,15 @@ sources/2 = SubResource("TileSetAtlasSource_cquw4")
 sources/3 = SubResource("TileSetAtlasSource_g62wq")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_la5uh"]
-size = Vector2(16, 5.5)
+size = Vector2(15, 8)
 
 [node name="BLK5" type="Node2D" unique_id=1627189944]
 script = ExtResource("1_mqp35")
-metadata/_edit_vertical_guides_ = [32.0]
-metadata/_edit_horizontal_guides_ = [-127.0]
+metadata/_edit_vertical_guides_ = [970.0]
+metadata/_edit_horizontal_guides_ = [310.0]
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1229081965]
-position = Vector2(-154, -49)
+position = Vector2(787, 385)
 tile_set = SubResource("TileSet_y5u6n")
 format = 2
 layer_0/name = "floor"
@@ -1962,7 +1962,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="npc1" parent="Npc Node" unique_id=1295285643 instance=ExtResource("9_y5u6n")]
 z_index = 1
-position = Vector2(-150, 78)
+position = Vector2(791, 515)
 speed = 50.0
 wait_time = 2.0
 greeting_lines = Array[String](["What am i doing? nothing, just looking around"])
@@ -1979,7 +1979,7 @@ position = Vector2(115, 24)
 
 [node name="Kid_npc" parent="Npc Node" unique_id=1619399057 instance=ExtResource("11_gbnj1")]
 z_index = 1
-position = Vector2(172, 268)
+position = Vector2(1119, 706)
 speed = 50.0
 wait_time = 1.0
 
@@ -2000,16 +2000,16 @@ position = Vector2(0, 48)
 
 [node name="Parent_npc" parent="Npc Node" unique_id=1203574701 instance=ExtResource("12_6mf0v")]
 z_index = 1
-position = Vector2(217, 226)
+position = Vector2(1157, 660)
 
 [node name="Vendor_npc" parent="Npc Node" unique_id=537197415 instance=ExtResource("13_nqi3u")]
-position = Vector2(164, 143)
+position = Vector2(1103, 576)
 greeting_lines = Array[String](["Ice cream! Ice cgream! Delicious ice cream...."])
 speaker_name = "Old man Roy"
 
 [node name="Lumberjack_npc" parent="Npc Node" unique_id=1128608201 instance=ExtResource("14_2oev7")]
 z_index = 1
-position = Vector2(-145, 161)
+position = Vector2(790, 591)
 speed = 50.0
 greeting_lines = Array[String](["Just gathering wood, This is my work...."])
 speaker_name = "Lumberjack May"
@@ -2039,7 +2039,7 @@ position = Vector2(68, 17)
 position = Vector2(2, 21)
 
 [node name="Kid2_npc" parent="Npc Node" unique_id=309728905 instance=ExtResource("15_mlqgt")]
-position = Vector2(141, 266)
+position = Vector2(1088, 704)
 greeting_lines = Array[String](["Lets play lota..."])
 
 [node name="PatrolPoints" type="Node2D" parent="Npc Node/Kid2_npc" unique_id=2054977196]
@@ -2062,12 +2062,12 @@ position = Vector2(31, 50)
 
 [node name="Tradernpc" parent="Npc Node" unique_id=2015198102 instance=ExtResource("11_iib8a")]
 z_index = 1
-position = Vector2(64, 57)
+position = Vector2(1007, 490)
 species_for_sale = Array[ExtResource("12_ba16m")]([ExtResource("13_gbnj1"), ExtResource("14_6mf0v")])
 
 [node name="Grandma_lorna" parent="Npc Node" unique_id=1312907544 instance=ExtResource("20_bhn75")]
 z_index = 1
-position = Vector2(-21, -22)
+position = Vector2(920, 415)
 greeting_lines = Array[String](["You need to eat more young man"])
 speaker_name = "Old Lady Lorna"
 
@@ -2075,10 +2075,10 @@ speaker_name = "Old Lady Lorna"
 position = Vector2(-2, -22)
 
 [node name="EnemyNPC" parent="Npc Node" unique_id=243201095 instance=ExtResource("22_qgnlv")]
-position = Vector2(299, 211)
+position = Vector2(1236, 646)
 
 [node name="Grandma_Anne" parent="Npc Node" unique_id=542075413 instance=ExtResource("22_jl7l1")]
-position = Vector2(859, 51)
+position = Vector2(1807, 483)
 speed = 40.0
 wait_time = 2.0
 greeting_lines = Array[String](["You should get more sleep young man"])
@@ -2103,11 +2103,11 @@ position = Vector2(144, 17)
 
 [node name="PlayerHouse" type="Area2D" parent="Door Trigger" unique_id=860653608]
 z_index = 1
-position = Vector2(21, -155)
+position = Vector2(968, 283)
 script = ExtResource("24_rphan")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door Trigger/PlayerHouse" unique_id=1349858295]
-position = Vector2(5, -3)
+position = Vector2(-1, -9)
 shape = SubResource("RectangleShape2D_la5uh")
 
 [connection signal="body_entered" from="Door Trigger/PlayerHouse" to="." method="_on_player_house_body_entered"]
