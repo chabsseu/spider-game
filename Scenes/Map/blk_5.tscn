@@ -913,11 +913,17 @@ texture = ExtResource("3_g50jq")
 69:5/0 = 0
 70:5/0 = 0
 1:6/0 = 0
+1:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, 3.0468063, 8, 2.524498, -8)
 2:6/0 = 0
+2:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:6/0 = 0
+3:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:6/0 = 0
+4:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:6/0 = 0
+5:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:6/0 = 0
+6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 3.220911, -8, 2.8727036, 8, -8, 8)
 8:6/0 = 0
 8:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(4.091427, -8, 8, -8, 8, 8, 5.1360455, 8)
 9:6/0 = 0
@@ -939,9 +945,9 @@ texture = ExtResource("3_g50jq")
 17:6/0 = 0
 17:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 18:6/0 = 0
-18:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+18:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0.78346443, -8, 0.26115417, 8, -8, 8)
 19:6/0 = 0
-19:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+19:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(1.3057747, -8, 8, -8, 8, 8, 1.1316719, 8)
 20:6/0 = 0
 20:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 21:6/0 = 0
@@ -999,9 +1005,8 @@ texture = ExtResource("3_g50jq")
 3:7/0 = 0
 3:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:7/0 = 0
-4:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 3.0468082, -8, 2.524498)
+4:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -2.0021877, -8, -1.13167, 8, -8, 8)
 5:7/0 = 0
-5:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 3.0468082, -8, 2.524498)
 6:7/0 = 0
 6:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 2.0021877, -8, 2.524498, 8, -8, 8)
 11:7/0 = 0
@@ -1921,6 +1926,22 @@ sources/3 = SubResource("TileSetAtlasSource_g62wq")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_la5uh"]
 size = Vector2(15, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qgnlv"]
+size = Vector2(20, 7.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jl7l1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rphan"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cquw4"]
+size = Vector2(20, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g62wq"]
+size = Vector2(20, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmopm"]
+size = Vector2(20, 8.5)
+
 [node name="BLK5" type="Node2D" unique_id=1627189944]
 script = ExtResource("1_mqp35")
 metadata/_edit_vertical_guides_ = [970.0]
@@ -1962,7 +1983,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="npc1" parent="Npc Node" unique_id=1295285643 instance=ExtResource("9_y5u6n")]
 z_index = 1
-position = Vector2(791, 515)
+position = Vector2(812, 515)
 speed = 50.0
 wait_time = 2.0
 greeting_lines = Array[String](["What am i doing? nothing, just looking around"])
@@ -2009,7 +2030,7 @@ speaker_name = "Old man Roy"
 
 [node name="Lumberjack_npc" parent="Npc Node" unique_id=1128608201 instance=ExtResource("14_2oev7")]
 z_index = 1
-position = Vector2(790, 591)
+position = Vector2(793, 596)
 speed = 50.0
 greeting_lines = Array[String](["Just gathering wood, This is my work...."])
 speaker_name = "Lumberjack May"
@@ -2105,9 +2126,70 @@ position = Vector2(144, 17)
 z_index = 1
 position = Vector2(968, 283)
 script = ExtResource("24_rphan")
+indoor_scene_path = "uid://cx6eqwdh7oluc"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door Trigger/PlayerHouse" unique_id=1349858295]
 position = Vector2(-1, -9)
 shape = SubResource("RectangleShape2D_la5uh")
+
+[node name="Grandma_Lorna\'sHouse" type="Area2D" parent="Door Trigger" unique_id=387160005]
+position = Vector2(902, 392)
+script = ExtResource("24_rphan")
+indoor_scene_path = "uid://da6p3jbv8fkve"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door Trigger/Grandma_Lorna\'sHouse" unique_id=1609087957]
+z_index = 1
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_qgnlv")
+
+[node name="Old_Man_Rene\'sHouse" type="Area2D" parent="Door Trigger" unique_id=1422578690]
+z_index = 1
+position = Vector2(790, 484)
+script = ExtResource("24_rphan")
+indoor_scene_path = "uid://doedakghcwrob"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door Trigger/Old_Man_Rene\'sHouse" unique_id=2059789017]
+position = Vector2(2, -12)
+shape = SubResource("RectangleShape2D_jl7l1")
+
+[node name="Inn_House" type="Area2D" parent="Door Trigger" unique_id=474492099]
+z_index = 1
+position = Vector2(1062, 434)
+script = ExtResource("24_rphan")
+indoor_scene_path = "uid://xijeagiqwo2u"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door Trigger/Inn_House" unique_id=1840703434]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_rphan")
+
+[node name="Lumberjack_May\'sHouse" type="Area2D" parent="Door Trigger" unique_id=1957472405]
+z_index = 1
+position = Vector2(1138, 487)
+script = ExtResource("24_rphan")
+indoor_scene_path = "uid://dl7yi1j37skof"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door Trigger/Lumberjack_May\'sHouse" unique_id=300104084]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_cquw4")
+
+[node name="Josel\'sHouse" type="Area2D" parent="Door Trigger" unique_id=59915637]
+z_index = 1
+position = Vector2(1047, 643)
+script = ExtResource("24_rphan")
+indoor_scene_path = "uid://dq8iqm1ao8kyh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door Trigger/Josel\'sHouse" unique_id=1870571880]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_g62wq")
+
+[node name="Church" type="Area2D" parent="Door Trigger" unique_id=1039856772]
+z_index = 1
+position = Vector2(963, 765)
+script = ExtResource("24_rphan")
+indoor_scene_path = "uid://csghjdrjcumb7"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door Trigger/Church" unique_id=1041945876]
+position = Vector2(1, -4.25)
+shape = SubResource("RectangleShape2D_nmopm")
 
 [connection signal="body_entered" from="Door Trigger/PlayerHouse" to="." method="_on_player_house_body_entered"]
