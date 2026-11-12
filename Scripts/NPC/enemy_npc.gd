@@ -14,7 +14,7 @@ class_name ChallengerNPC
 ]
 
 @export var defeated_lines: Array[String] = [
-	"You already beat my spider. No rematch."
+	"IM GONNA TELL MY MOM~ T_T"
 ]
 
 @export var no_spiders_lines: Array[String] = [
